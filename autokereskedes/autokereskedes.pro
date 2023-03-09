@@ -38,6 +38,12 @@ HEADERS += \
 FORMS += \
     dialog.ui
 
+SQLAPIDIR = "C:\Egyetem\3.felev\Korszprog\SQLAPI"
+
+INCLUDEPATH += $${SQLAPIDIR}\include
+
+LIBS += -L$${SQLAPIDIR}/mingw-w64-x86_64-8.1.0-posix-seh-rt_v6-rev0/lib -llibsqlapi -lversion
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
