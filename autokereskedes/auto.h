@@ -2,6 +2,7 @@
 #define AUTO_H
 
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ class Auto
     string rendszam;
     string marka;
     string tipus;
-    string *felszerelesek; // tömb
+    list<string> felszerelesek;
     string kialakitas;
     int ar;
     int napidij;
@@ -23,11 +24,11 @@ class Auto
     string sebessegvalto;
     string hajtas;
 public:
-    Auto(const string& rendszam, const string& marka, const string& tipus,
-         string& felszerelesek, const string& kialakitas, int ar, int napidij,
-         const string& szin, int csomagtarto_meret, const string& uzemanyag,
-         int evjarat, int motor_teljesitmeny, int hengerutartalom,
-         const string& sebessegvalto, const string& hajtas
+    Auto(const string& _rendszam, const string& _marka, const string& _tipus,
+         list<string> _felszerelesek, const string& _kialakitas, int _ar, int _napidij,
+         const string& _szin, int _csomagtarto_meret, const string& _uzemanyag,
+         int _evjarat, int _motor_teljesitmeny, int _hengerutartalom,
+         const string& _sebessegvalto, const string& _hajtas
          );
     // leírásokat tárol az autóról
 };
