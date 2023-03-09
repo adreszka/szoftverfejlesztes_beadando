@@ -12,11 +12,13 @@ SOURCES += \
     adatbazis.cpp \
     adminisztrator.cpp \
     auto.cpp \
+    belepes.cpp \
     kereskedo.cpp \
     kerveny.cpp \
     licit.cpp \
     main.cpp \
     dialog.cpp \
+    regisztracio.cpp \
     regisztraltfelhasznalo.cpp \
     tarolo.cpp
 
@@ -24,10 +26,12 @@ HEADERS += \
     adatbazis.h \
     adminisztrator.h \
     auto.h \
+    belepes.h \
     dialog.h \
     kereskedo.h \
     kerveny.h \
     licit.h \
+    regisztracio.h \
     regisztraltfelhasznalo.h \
     tarolo.h
 
