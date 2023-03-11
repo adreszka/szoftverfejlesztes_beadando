@@ -22,8 +22,6 @@ public:
     Adatbazis()=default;
     void csatlakozas (const string& sqlite_fajl);
     void teszt ();
-
-
 };
 
 #endif // ADATBAZIS_H
