@@ -31,10 +31,48 @@ Dialog::Dialog(QWidget *parent)
             rekord->addWidget(button);
         }
     }
+
+    //unregistered feltöltés
+    ui->brandComboBoxUnregistered->addItem("Válasszon");
+    ui->typeComboBoxUnregistered->addItem("Válasszon");
+    ui->fromPurchaseSpinBoxUnregistered->setMinimum(0);
+    ui->toPurchaseSpinBoxUnregistered->setMinimum(0);
 }
 
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+void Dialog::on_loginButtonUnregistered_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->authenticationPage);
+    ui->stackedWidgetAuthentication->setCurrentWidget(ui->loginPage);
+}
+
+void Dialog::on_registrationButtonLogin_clicked()
+{
+    ui->stackedWidgetAuthentication->setCurrentWidget(ui->registrationPage);
+}
+
+void Dialog::on_pushButton_clicked()
+{
+    ui->stackedWidgetAuthentication->setCurrentWidget(ui->loginPage);
+}
+
+void Dialog::on_backButtonAuthentication_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->unregisteredPage);
+}
+
+
+void Dialog::on_loginButtonLogin_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+}
+
+void Dialog::on_pushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->registeredPage);
 }
 
