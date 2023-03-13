@@ -8,6 +8,7 @@
 
 #include "auto.h"
 #include "tarolo.h"
+#include "rendszerfuggvenyek.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
@@ -35,6 +36,8 @@ private slots:
     void on_registrationButtonRegistration_clicked();
 
     void on_loginButtonRegistration_clicked();
+
+    void on_filerButtonUnregistered_clicked();
 
 private:
     Ui::Dialog *ui;

@@ -26,7 +26,7 @@
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="unregisteredPage">
     <property name="styleSheet">
@@ -200,7 +200,7 @@ color: rgb(0, 0, 0);</string>
        <string>Vételár:</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="fromPurchaseSpinBoxUnregistered">
+     <widget class="QSpinBox" name="fromPriceSpinBoxUnregistered">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -209,8 +209,11 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>100000000</number>
+      </property>
      </widget>
-     <widget class="QLabel" name="fromPurchaseLabelUnregistered">
+     <widget class="QLabel" name="fromPriceLabelUnregistered">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -223,7 +226,7 @@ color: rgb(0, 0, 0);</string>
        <string>-tól:</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="toPurchaseSpinBoxUnregistered">
+     <widget class="QSpinBox" name="toPriceSpinBoxUnregistered">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -232,8 +235,11 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>100000000</number>
+      </property>
      </widget>
-     <widget class="QLabel" name="toPurchaseLabelUnregistered">
+     <widget class="QLabel" name="toPriceLabelUnregistered">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -307,6 +313,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>1000000</number>
+      </property>
      </widget>
      <widget class="QSpinBox" name="toRentSpinBoxUnregistered">
       <property name="geometry">
@@ -316,6 +325,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="maximum">
+       <number>1000000</number>
       </property>
      </widget>
      <widget class="QLabel" name="fuelLabelUnregistered">
@@ -711,6 +723,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>2000</number>
+      </property>
      </widget>
      <widget class="QSpinBox" name="toPowerSpinBoxUnregistered">
       <property name="geometry">
@@ -720,6 +735,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="maximum">
+       <number>2000</number>
       </property>
      </widget>
      <widget class="QLabel" name="sizeLabelUnregistered">
@@ -770,6 +788,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>20000</number>
+      </property>
      </widget>
      <widget class="QSpinBox" name="toSizeSpinBoxUnregistered">
       <property name="geometry">
@@ -779,6 +800,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="maximum">
+       <number>20000</number>
       </property>
      </widget>
      <widget class="QLabel" name="gearLabelUnregistered">
@@ -1075,7 +1099,7 @@ color: rgb(0, 0, 0);</string>
        <string>Vételár:</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="fromSpinBoxRegistered">
+     <widget class="QSpinBox" name="fromPriceSpinBoxRegistered">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1085,7 +1109,7 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="fromLabelRegistered">
+     <widget class="QLabel" name="fromPriceLabelRegistered">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1098,7 +1122,7 @@ color: rgb(0, 0, 0);</string>
        <string>-tól:</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="toSpinBoxRegistered">
+     <widget class="QSpinBox" name="toPriceSpinBoxRegistered">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -1108,7 +1132,7 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="toLabelRegistered">
+     <widget class="QLabel" name="toPriceLabelRegistered">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -1323,7 +1347,7 @@ color: rgb(0, 0, 0);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QSpinBox" name="toYearSpinBoxUnregistered_2">
+     <widget class="QSpinBox" name="toYearSpinBoxRegistered">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -1333,7 +1357,7 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QSpinBox" name="fromYearSpinBoxUnregistered_2">
+     <widget class="QSpinBox" name="fromYearSpinBoxRegistered">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1343,7 +1367,7 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="yearLabelUnregistered_2">
+     <widget class="QLabel" name="yearLabelRegistered">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1356,7 +1380,7 @@ color: rgb(0, 0, 0);</string>
        <string>Évjárat:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="fromYearLabelUnregistered_2">
+     <widget class="QLabel" name="fromYearLabelRegistered">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1369,7 +1393,7 @@ color: rgb(0, 0, 0);</string>
        <string>-tól:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="toYearLabelUnregistered_2">
+     <widget class="QLabel" name="toYearLabelRegistered">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -2193,6 +2217,126 @@ color: rgb(0, 0, 0);</string>
         <string>Irányítószám</string>
        </property>
       </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="carPage">
+    <widget class="QWidget" name="headerCar" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>800</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <widget class="QLabel" name="headerLabelCar">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>351</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>35</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Autó Kereskedés</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>119</y>
+       <width>621</width>
+       <height>511</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);</string>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Márka:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Típus:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>50</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
      </widget>
     </widget>
    </widget>
