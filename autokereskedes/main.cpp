@@ -1,8 +1,7 @@
+#include "adatbazis.h"
 #include "dialog.h"
 
 #include <QApplication>
-
-#include "adatbazis.h"
 
 int main(int argc, char *argv[])
 {

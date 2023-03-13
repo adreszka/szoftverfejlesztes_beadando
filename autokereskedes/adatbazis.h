@@ -13,7 +13,7 @@
 
 #include "tarolo.h"
 #include "auto.h"
-#include "felhasznalo.h"
+#include "regisztraltfelhasznalo.h"
 
 
 // adatbázis kapcsolatát, lekérdezéseket végzi
