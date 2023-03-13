@@ -1,5 +1,20 @@
 #include "tarolo.h"
 
+list<Auto> Tarolo::getAutok() const
+{
+    return autok;
+}
+
+RegisztraltFelhasznalo Tarolo::getFelhasznalo() const
+{
+    return felhasznalo;
+}
+
+void Tarolo::setFelhasznalo(const RegisztraltFelhasznalo &newFelhasznalo)
+{
+    felhasznalo = newFelhasznalo;
+}
+
 Tarolo &Tarolo::getObjektum()
 {
     static Tarolo tarolo;
@@ -20,4 +35,5 @@ void Tarolo::hozzaAd(const Auto &a)
 //        }
 //        cout << endl;
 //    }
+//    cout << this->getObjektum().getFelhasznalo().getTeljes_nev();
 //}

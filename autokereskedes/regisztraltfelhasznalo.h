@@ -1,12 +1,12 @@
-#ifndef FELHASZNALO_H
-#define FELHASZNALO_H
+#ifndef REGISZTRALT_FELHASZNALO_H
+#define REGISZTRALT_FELHASZNALO_H
 
 #include <string>
 #include <list>
 
 using namespace std;
 
-class Felhasznalo
+class RegisztraltFelhasznalo
 {
     int felhasznalo_id;
     string teljes_nev;
@@ -16,8 +16,9 @@ class Felhasznalo
     bool nem;                //0 férfi 1 nő
     int iranyitoszam;
     public:
-    Felhasznalo(int felhasznalo_id, const string& _teljes_nev, const string _szul_dat,
+    RegisztraltFelhasznalo(int felhasznalo_id, const string& _teljes_nev, const string _szul_dat,
     int _telefonszam, const string& _email, bool _nem, int _iranyitoszam);
+    RegisztraltFelhasznalo();
 };
 
-#endif // FELHASZNALO_H
+#endif // REGISZTRALT_FELHASZNALO_H
