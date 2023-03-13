@@ -1,5 +1,15 @@
 #include "regisztraltfelhasznalo.h"
 
+string RegisztraltFelhasznalo::getTeljes_nev() const
+{
+    return teljes_nev;
+}
+
+int RegisztraltFelhasznalo::getFelhasznalo_id() const
+{
+    return felhasznalo_id;
+}
+
 RegisztraltFelhasznalo::RegisztraltFelhasznalo(int _felhasznalo_id, const string& _teljes_nev, const string _szul_dat,
                          int _telefonszam, const string& _email, bool _nem, int _iranyitoszam):
     felhasznalo_id(_felhasznalo_id),
