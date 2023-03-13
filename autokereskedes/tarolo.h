@@ -1,8 +1,10 @@
 #ifndef TAROLO_H
 #define TAROLO_H
 
-#include "auto.h"
 #include <list>
+#include <iostream>
+
+#include "auto.h"
 
 using namespace std;
 
@@ -13,6 +15,8 @@ class Tarolo
     Tarolo(const Tarolo& other)=default;
 public:
     static Tarolo& getObjektum();
+    void hozzaAd(const Auto& a);
+    //void kiirTeszt();
 };
 
 #endif // TAROLO_H

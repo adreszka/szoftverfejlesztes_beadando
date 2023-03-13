@@ -7,6 +7,9 @@
 #include <string>
 #include <list>
 
+#include "tarolo.h"
+#include "auto.h"
+
 #ifdef _W64 || _WIN32
 #define WIN32_LEAN_AND_MEAN
 #endif // _W64 || _WIN32
@@ -22,6 +25,8 @@ public:
     Adatbazis()=default;
     void csatlakozas (const string& sqlite_fajl);
     void teszt ();
+    void autokBeolvas();
+    //void felhaszlnaoBeolvas();
 };
 
 #endif // ADATBAZIS_H
