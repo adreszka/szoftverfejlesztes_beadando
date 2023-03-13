@@ -9,6 +9,7 @@
 
 #include "tarolo.h"
 #include "auto.h"
+#include "felhasznalo.h"
 
 #ifdef _W64 || _WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -26,7 +27,18 @@ public:
     void csatlakozas (const string& sqlite_fajl);
     void teszt ();
     void autokBeolvas();
-    //void felhaszlnaoBeolvas();
+    void bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo);
+    void felhasznaloBeolvas(const string& felhasznalo_nev);
+    void autoVasarlas(const string& rendszam);
 };
+
+
+//Adatbazis adatbazis;
+//adatbazis.csatlakozas("autokereskedes.sqlite");
+//adatbazis.teszt();
+//adatbazis.autokBeolvas();
+//adatbazis.felhasznaloBeolvas("teszt");
+//Tarolo::getObjektum().kiirTeszt();
+//adatbazis.autoVasarlas("FOS123");
 
 #endif // ADATBAZIS_H

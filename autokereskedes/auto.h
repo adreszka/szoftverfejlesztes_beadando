@@ -33,20 +33,20 @@ public:
     // leírásokat tárol az autóról
     string getRendszam() const;
     list<string> getFelszerelesek() const;
+    string getUzemanyag() const;
     int getAr() const;
     int getNapidij() const;
     string getSzin() const;
-    int getCsomagtarto_meret() const;
-    string getUzemanyag() const;
     int getEvjarat() const;
     int getMotor_teljesitmeny() const;
-    int getHengerutartalom() const;
     string getSebessegvalto() const;
+    int getHengerutartalom() const;
     string getHajtas() const;
     string getMarka() const;
     string getTipus() const;
     bool getRaktaron() const;
     string getKialakitas() const;
+    int getCsomagtarto_meret() const;
 };
 
 #endif // AUTO_H

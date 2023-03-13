@@ -19,6 +19,8 @@ class RegisztraltFelhasznalo
     RegisztraltFelhasznalo(int felhasznalo_id, const string& _teljes_nev, const string _szul_dat,
     int _telefonszam, const string& _email, bool _nem, int _iranyitoszam);
     RegisztraltFelhasznalo();
+    string getTeljes_nev() const;
+    int getFelhasznalo_id() const;
 };
 
 #endif // REGISZTRALT_FELHASZNALO_H

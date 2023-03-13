@@ -1,8 +1,12 @@
 #include "adatbazis.h"
 
+#include <chrono>
+#include <iomanip>
+
 void Adatbazis::csatlakozas(const string &fajl)
 {
     dbcon.Connect(fajl.c_str(),"","",SA_SQLite_Client);
+    cout << "Sikeres csatlakozas!" << endl;
 }
 
 void Adatbazis::teszt()
@@ -11,6 +15,8 @@ void Adatbazis::teszt()
     szamol.Execute();
     szamol.FetchNext();
     int cnt = szamol[1].asLong();
+    cout << "Rekordok szama: " << cnt << endl;
+    cout << "Jo munkat!" << endl << endl;
 }
 
 void Adatbazis::autokBeolvas()
@@ -56,12 +62,66 @@ void Adatbazis::autokBeolvas()
     }
 }
 
-//void Adatbazis::felhaszlnaoBeolvas()
-//{
-//    SACommand selectfelhasznalo(&dbcon,"SELECT *"
-//                         " FROM Felhasznalo");
-//    selectfelhasznalo.Execute();
-//    while (selectfelhasznalo.FetchNext()){
-//        int ar = selectfelhasznalo[1].asLong();
-//    }
-//}
+void Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo)
+{
+    boolean adatbazisbanTalalhato = false;
+    SACommand select(&dbcon, "SELECT * FROM Bejelentkezesi_adatok");
+        select.Execute();
+        while(select.FetchNext()) {
+            string felhasznalo_nevdb = (string)select[2].asString();
+            string jelszodb = (string)select[3].asString();
+            if (felhasznalo_nev == felhasznalo_nevdb && jelszo == jelszodb) {
+                cout << "Sikeresen bejelentkezett!" << endl;
+                adatbazisbanTalalhato = true;
+                break;
+            }
+        }
+        if (adatbazisbanTalalhato == false) {
+            cout << "Nem található az adatbázisban!" << endl;
+        }
+}
+
+void Adatbazis::felhasznaloBeolvas(const string& felhasznalo_nev)
+{
+    SACommand selectfelhasznalo(&dbcon,"SELECT f.Felhasznalo_Id, Teljes_nev, Szul_dat, Telefonszam, Email, Nem, Iranyitoszam, Felhasznalo_nev"
+                                " FROM Felhasznalo f JOIN Bejelentkezesi_adatok b ON f.Felhasznalo_Id = b.Felhasznalo_Id"
+                                " WHERE felhasznalo_nev = :1");
+    selectfelhasznalo << felhasznalo_nev.c_str();
+    selectfelhasznalo.Execute();
+    while (selectfelhasznalo.FetchNext()){
+        int felhasznalo_id = selectfelhasznalo[1].asLong();
+        string teljes_nev = (string)selectfelhasznalo[2].asString();
+        string szul_dat = (string)selectfelhasznalo[3].asString();
+        int telefonszam = selectfelhasznalo[4].asLong();
+        string email = (string)selectfelhasznalo[5].asString();
+        bool nem = selectfelhasznalo[6].asBool();
+        int iranyitoszam = selectfelhasznalo[7].asLong();
+        RegisztraltFelhasznalo f(felhasznalo_id, teljes_nev, szul_dat, telefonszam,
+                      email, nem, iranyitoszam);
+        Tarolo::getObjektum().setFelhasznalo(f);
+    }
+}
+
+void Adatbazis::autoVasarlas(const string& rendszam)
+{
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::ostringstream oss;
+    oss << std::put_time(&tm, "%Y-%m-%d");
+    auto str = oss.str();
+    int felhasznalo_id = Tarolo::getObjektum().getFelhasznalo().getFelhasznalo_id();
+    SACommand addTranzakcio(&dbcon,"INSERT INTO Tranzakcio(Rendszam, Datum, Szerep, Felhasznalo_Id) VALUES (:1, :2, 0, :3)");
+    SACommand deleteAutoFelszereles(&dbcon, "DELETE FROM Felszereltseg_seged WHERE Rendszam = :1");
+    SACommand deleteAuto(&dbcon, "DELETE FROM Auto WHERE Rendszam = :1");
+    addTranzakcio << rendszam.c_str();
+    addTranzakcio << str.c_str();
+    addTranzakcio << (long)felhasznalo_id;
+    addTranzakcio.Execute();
+    deleteAutoFelszereles << rendszam.c_str();
+    deleteAutoFelszereles.Execute();
+    deleteAuto << rendszam.c_str();
+    deleteAuto.Execute();
+}
+
+
+
