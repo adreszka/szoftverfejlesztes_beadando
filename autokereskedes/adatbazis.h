@@ -29,6 +29,7 @@ public:
     void bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo);
     void felhasznaloBeolvas(const string& felhasznalo_nev);
     void autoVasarlas(const string& rendszam);
+    void markaBeolvasas();
 };
 
 

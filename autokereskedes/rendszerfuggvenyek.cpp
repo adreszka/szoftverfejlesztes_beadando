@@ -1,16 +1,6 @@
 #include "rendszerfuggvenyek.h"
-list<Auto> kereses(string marka,
-                   string tipus,
-                   pair<int,int> ar,
-                   pair<int,int> berlet,
-                   pair<int,int> ev,
-                   string uzemanyag[],
-                   string meghajtas[],
-                   string kivitel[],
-                   pair<int,int> teljesitmeny,
-                   pair<int,int> urtartalom,
-                   string valto[],
-                   string felszereltseg[])
+
+list<Auto> kereses(string marka, string tipus, pair<int, int> ar, pair<int, int> berlet, pair<int, int> ev, string uzemanyag[], string meghajtas[], string kivitel[], pair<int, int> teljesitmeny, pair<int, int> urtartalom, string valto[], string felszereltseg[])
 {
     list<Auto> autok = Tarolo::getObjektum().getAutok();
     list<Auto> ki_autok;

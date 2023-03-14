@@ -24,6 +24,12 @@ Dialog::Dialog(QWidget *parent)
     //unregistered feltöltés
     ui->brandComboBoxUnregistered->addItem("Válasszon");
     ui->typeComboBoxUnregistered->addItem("Válasszon");
+
+    map<string, list<string>> temp = Tarolo::getObjektum().getMarkak();
+    for(auto i : temp)
+    {
+        ui->brandComboBoxUnregistered->addItem(QString::fromStdString(i.first));
+    }
 }
 
 Dialog::~Dialog()
@@ -33,6 +39,12 @@ Dialog::~Dialog()
 
 void Dialog::listazas(list<Auto> autok)
 {
+//    QHBoxLayout *fejlec = new QHBoxLayout();
+//    elemTarolo->addLayout(fejlec);
+//    fejlec->addWidget(new QLabel().setText("Név & Márka:"););
+//    fejlec->addWidget(new QLabel().setText("Vételár:"););
+//    fejlec->addWidget(new QLabel().setText("Bérlési díj:"););
+
     for(auto i : autok)
     {
         QHBoxLayout *rekord = new QHBoxLayout();
@@ -45,6 +57,10 @@ void Dialog::listazas(list<Auto> autok)
         QLabel *ar = new QLabel();
         ar->setText(QString::fromStdString(to_string(i.getAr())));
         rekord->addWidget(ar);
+
+        QLabel *berlesiDij = new QLabel();
+        berlesiDij->setText(QString::fromStdString(to_string(i.getNapidij())));
+        rekord->addWidget(berlesiDij);
     }
 }
 
@@ -57,30 +73,6 @@ void Dialog::on_loginButtonUnregistered_clicked()
 
 void Dialog::on_filerButtonUnregistered_clicked()
 {
-    while(elemTarolo->count() != 0)
-    {
-        QLayoutItem *i = elemTarolo->takeAt(0);
-        delete i->widget();
-        delete i;
-    }
-
-//    QLayoutItem *item;
-//    QLayout *sublayout;
-//    QWidget *widget;
-//    while(item = elemTarolo->takeAt(0))
-//    {
-//        if((sublayout = item->layout()) != 0)
-//        {
-
-//        }else if((widget = item->widget()) != 0)
-//        {
-//            widget->hide();
-//            delete widget;
-//        }else{
-//            delete item;
-//        }
-//    }
-
     string uzemanyag[3] = {ui->gasCheckBoxUnregistered->isChecked()?ui->gasCheckBoxUnregistered->text().toStdString():"",
                            ui->electronicCheckBoxUnregistered->isChecked()?ui->electronicCheckBoxUnregistered->text().toStdString():"",
                       ui->dieselCheckBoxUnregistered->isChecked()?ui->dieselCheckBoxUnregistered->text().toStdString():""};
@@ -113,6 +105,25 @@ void Dialog::on_filerButtonUnregistered_clicked()
                     felszereltseg));
 }
 
+void Dialog::on_brandComboBoxUnregistered_currentIndexChanged(int index)
+{
+    ui->typeComboBoxUnregistered->clear();
+    ui->typeComboBoxUnregistered->addItem("Válasszon");
+
+    map<string, list<string>> temp = Tarolo::getObjektum().getMarkak();
+    for(auto i : temp)
+    {
+        if(i.first == ui->brandComboBoxUnregistered->currentText().toStdString())
+        {
+            for(auto j : i.second)
+            {
+                ui->typeComboBoxUnregistered->addItem(QString::fromStdString(j));
+            }
+            break;
+        }
+    }
+}
+
 //authentication page
 void Dialog::on_backButtonAuthentication_clicked()
 {
@@ -141,3 +152,5 @@ void Dialog::on_loginButtonRegistration_clicked()
 {
     ui->stackedWidgetAuthentication->setCurrentWidget(ui->loginPage);
 }
+
+

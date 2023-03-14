@@ -508,6 +508,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>2023</number>
+      </property>
      </widget>
      <widget class="QSpinBox" name="toYearSpinBoxUnregistered">
       <property name="geometry">
@@ -517,6 +520,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="maximum">
+       <number>2023</number>
       </property>
      </widget>
      <widget class="QLabel" name="equipmentLabelUnregistered">

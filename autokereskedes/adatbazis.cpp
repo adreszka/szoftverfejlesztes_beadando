@@ -123,5 +123,18 @@ void Adatbazis::autoVasarlas(const string& rendszam)
     deleteAuto.Execute();
 }
 
+void Adatbazis::markaBeolvasas()
+{
+    SACommand markaSelect(&dbcon, "SELECT Marka, Tipus FROM Marka JOIN Tipus ON Marka.Marka_Id = Tipus.Marka_Id");
+    markaSelect.Execute();
+
+    map<string, list<string>> markak;
+    while(markaSelect.FetchNext())
+    {
+        markak[(string)markaSelect[1].asString()].push_back((string)markaSelect[2].asString());
+    }
+    Tarolo::getObjektum().setMarkak(markak);
+}
+
 
 

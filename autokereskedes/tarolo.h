@@ -2,6 +2,7 @@
 #define TAROLO_H
 
 #include <list>
+#include <map>
 #include <iostream>
 
 #include "auto.h"
@@ -12,6 +13,7 @@ using namespace std;
 class Tarolo
 {
     list<Auto> autok;
+    map<string, list<string>> markak;
     RegisztraltFelhasznalo felhasznalo;
     Tarolo()=default;
     Tarolo(const Tarolo& other)=default;
@@ -22,6 +24,8 @@ public:
     list<Auto> getAutok() const;
     RegisztraltFelhasznalo getFelhasznalo() const;
     void setFelhasznalo(const RegisztraltFelhasznalo &newFelhasznalo);
+    map<string, list<string>> getMarkak() const;
+    void setMarkak(const map<string, list<string> > &newMarkak);
 };
 
 #endif // TAROLO_H

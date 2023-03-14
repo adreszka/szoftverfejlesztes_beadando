@@ -15,6 +15,16 @@ void Tarolo::setFelhasznalo(const RegisztraltFelhasznalo &newFelhasznalo)
     felhasznalo = newFelhasznalo;
 }
 
+map<string, list<string> > Tarolo::getMarkak() const
+{
+    return markak;
+}
+
+void Tarolo::setMarkak(const map<string, list<string> > &newMarkak)
+{
+    markak = newMarkak;
+}
+
 Tarolo &Tarolo::getObjektum()
 {
     static Tarolo tarolo;

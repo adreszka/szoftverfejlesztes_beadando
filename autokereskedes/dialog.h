@@ -39,6 +39,8 @@ private slots:
 
     void on_filerButtonUnregistered_clicked();
 
+    void on_brandComboBoxUnregistered_currentIndexChanged(int index);
+
 private:
     Ui::Dialog *ui;
 

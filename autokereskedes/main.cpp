@@ -8,6 +8,9 @@ int main(int argc, char *argv[])
     Adatbazis adatb;
     adatb.csatlakozas("autokereskedes.sqlite");
     adatb.autokBeolvas();
+    adatb.felhasznaloBeolvas("teszt");
+    adatb.markaBeolvasas();
+
     QApplication a(argc, argv);
     Dialog w;
     w.show();
