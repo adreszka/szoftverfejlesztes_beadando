@@ -17,8 +17,8 @@ list<Auto> kereses(string marka, string tipus, pair<int, int> ar, pair<int, int>
                 ((temp.getMotor_teljesitmeny() >= teljesitmeny.first && temp.getMotor_teljesitmeny() <= teljesitmeny.second) || (temp.getMotor_teljesitmeny() >= teljesitmeny.first && teljesitmeny.second == 0) || (teljesitmeny.first == 0 && teljesitmeny.second == 0)) &&
                 ((temp.getHengerutartalom() >= urtartalom.first && temp.getHengerutartalom() <= urtartalom.second) || (temp.getHengerutartalom() >= urtartalom.first && urtartalom.second == 0) || (urtartalom.first == 0 && urtartalom.second == 0)) &&
                 ((find(valto, valto+2, temp.getSebessegvalto()) != valto+2) || (all_of(valto, valto+2, [](string temp){return temp == "";}))) &&
-                (any_of(felsz.begin(), felsz.end(), [&](string innerTemp){return (find(felszereltseg, felszereltseg+6, innerTemp) != felszereltseg+6);}))
-                || (all_of(felszereltseg, felszereltseg+6, [](string temp) {return temp == "";}));
+                ((any_of(felsz.begin(), felsz.end(), [&](string innerTemp){return (find(felszereltseg, felszereltseg+6, innerTemp) != felszereltseg+6);}))
+                || (all_of(felszereltseg, felszereltseg+6, [](string temp) {return temp == "";})));
     });
     return ki_autok;
 }
