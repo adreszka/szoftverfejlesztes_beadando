@@ -21,15 +21,19 @@
 class Adatbazis
 {
     SAConnection dbcon;
-public:
     Adatbazis()=default;
+    Adatbazis(const Adatbazis &adatbazis)=default;
+public:
+    static Adatbazis& getObjektum();
+
     void csatlakozas (const string& sqlite_fajl);
     void teszt ();
     void autokBeolvas();
-    void bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo);
+    bool bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo);
     void felhasznaloBeolvas(const string& felhasznalo_nev);
     void autoVasarlas(const string& rendszam);
     void markaBeolvasas();
+    bool regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const int &telefonSzam, const int&iranyitoSzam, const bool &nem);
 };
 
 

@@ -5,11 +5,10 @@
 
 int main(int argc, char *argv[])
 {
-    Adatbazis adatb;
-    adatb.csatlakozas("autokereskedes.sqlite");
-    adatb.autokBeolvas();
-    adatb.felhasznaloBeolvas("teszt");
-    adatb.markaBeolvasas();
+    Adatbazis::getObjektum().csatlakozas("autokereskedes.sqlite");
+    Adatbazis::getObjektum().autokBeolvas();
+    Adatbazis::getObjektum().felhasznaloBeolvas("teszt");
+    Adatbazis::getObjektum().markaBeolvasas();
 
     QApplication a(argc, argv);
     Dialog w;

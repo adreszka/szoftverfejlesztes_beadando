@@ -138,13 +138,23 @@ void Dialog::on_registrationButtonLogin_clicked()
 
 void Dialog::on_loginButtonLogin_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+    if(!Autentikacio::getObjektum().bejelentkezes(ui->usernameFieldLogin->text().toStdString(), ui->passwordFieldLogin->text().toStdString()))
+    {
+        QMessageBox::warning(this, "Sikertelen bejelentkezés!", "Hibás a beírt felhasználónév vagy jelszó!");
+    }else{
+        ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+    }
 }
 
 //registration page
 void Dialog::on_registrationButtonRegistration_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+    if(Autentikacio::getObjektum().regisztracio(ui->usernameFieldRegistration->text().toStdString(), ui->emailFieldRegistration->text().toStdString(), ui->passwordFieldRegistration->text().toStdString(), ui->nameFieldRegistration->text().toStdString(), ui->birthFieldRegistration->text().toInt(), ui->phoneFieldRegistration->text().toInt(), ui->postcodeFieldRegistration->text().toInt(), ui->maleRadioRegistration->isChecked()?false:true))
+    {
+        QMessageBox::warning(this, "Hibás felhasználó név!", "Ez a felhasználónév már foglalt!");
+    }else{
+        ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+    }
 }
 
 

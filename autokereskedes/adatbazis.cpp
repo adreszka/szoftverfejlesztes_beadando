@@ -3,6 +3,12 @@
 #include <chrono>
 #include <iomanip>
 
+Adatbazis &Adatbazis::getObjektum()
+{
+    static Adatbazis adatbazis;
+    return adatbazis;
+}
+
 void Adatbazis::csatlakozas(const string &fajl)
 {
     dbcon.Connect(fajl.c_str(),"","",SA_SQLite_Client);
@@ -62,7 +68,7 @@ void Adatbazis::autokBeolvas()
     }
 }
 
-void Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo)
+bool Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo)
 {
     boolean adatbazisbanTalalhato = false;
     SACommand select(&dbcon, "SELECT * FROM Bejelentkezesi_adatok");
@@ -71,14 +77,12 @@ void Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const str
             string felhasznalo_nevdb = (string)select[2].asString();
             string jelszodb = (string)select[3].asString();
             if (felhasznalo_nev == felhasznalo_nevdb && jelszo == jelszodb) {
-                cout << "Sikeresen bejelentkezett!" << endl;
                 adatbazisbanTalalhato = true;
                 break;
             }
         }
-        if (adatbazisbanTalalhato == false) {
-            cout << "Nem található az adatbázisban!" << endl;
-        }
+
+    return adatbazisbanTalalhato;
 }
 
 void Adatbazis::felhasznaloBeolvas(const string& felhasznalo_nev)
@@ -134,6 +138,44 @@ void Adatbazis::markaBeolvasas()
         markak[(string)markaSelect[1].asString()].push_back((string)markaSelect[2].asString());
     }
     Tarolo::getObjektum().setMarkak(markak);
+}
+
+bool Adatbazis::regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const int &telefonSzam, const int &iranyitoSzam, const bool &nem)
+{
+    boolean adatbazisbanTalalhato = false;
+    int felhasznalo_id;
+    SACommand select(&dbcon, "SELECT * FROM Bejelentkezesi_adatok");
+    select.Execute();
+    while(select.FetchNext()) {
+        string usernamedb = (string)select[2].asString();
+        if (felhasznaloNev == usernamedb) {
+            boolean adatbazisbanTalalhato = true;
+            return adatbazisbanTalalhato;
+        }
+    }
+    SACommand add(&dbcon,
+                  "INSERT INTO Bejelentkezesi_adatok(Felhasznalo_nev,"
+                  " Jelszo, Hozzaferes) VALUES(:1, :2, :3)");
+    add << felhasznaloNev.c_str();
+    add << jelszo.c_str();
+    add << "felhasznalo";
+    add.Execute();
+    SACommand selectFelhasznalo(&dbcon, "SELECT * FROM Bejelentkezesi_adatok WHERE Felhasznalo_nev = :1");
+    selectFelhasznalo << felhasznaloNev.c_str();
+    selectFelhasznalo.Execute();
+    while (selectFelhasznalo.FetchNext()) {
+        felhasznalo_id = selectFelhasznalo[1].asLong();
+    }
+    SACommand addAdatok(&dbcon, "INSERT INTO Felhasznalo VALUES (:1,:2,:3,:4,:5,:6,:7)");
+    addAdatok << (long)felhasznalo_id;
+    addAdatok << teljesNev.c_str();
+    addAdatok << (long)szulEv;
+    addAdatok << (long)telefonSzam;
+    addAdatok << email.c_str();
+    addAdatok << (bool)nem;
+    addAdatok << (long)iranyitoSzam;
+    addAdatok.Execute();
+    return adatbazisbanTalalhato;
 }
 
 

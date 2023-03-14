@@ -6,45 +6,24 @@ Autentikacio &Autentikacio::getObjektum()
     return autentikacio;
 }
 
-void Autentikacio::bejelentkezes()
+bool Autentikacio::bejelentkezes(const string &felhasznalo_nev, const string &jelszo)
 {
-    /*SAConnection dbcon;
-    //boolean adatbazisbanTalalhato = false;
-    dbcon.Connect("autokereskedes.sqlite","","",SA_SQLite_Client);*/
-    string username;
-    string password;
-    cout << "Kerem adja meg a felhasznalonevet!" << endl;
-    cin >> username;
-    cout << "Kerem adja meg a jelszavát!" << endl;
-    cin >> password;
-    /*SACommand select(&dbcon, "SELECT * FROM Bejelentkezesi_adatok");
-    select.Execute();
-    while(select.FetchNext()) {
-        string usernamedb = (string)select[1].asString();
-        string passworddb = (string)select[3].asString();
-        if (username == usernamedb && password == passworddb) {
-            cout << "Sikeresen bejelentkezett!" << endl;
-            adatbazisbanTalalhato = true;
-            break;
-        }
-    }
-    if (adatbazisbanTalalhato == false) {
-        cout << "Nem található az adatbázisban!" << endl;
-    }*/
+    return Adatbazis::getObjektum().bejelentkezesEllenorzes(felhasznalo_nev, jelszo);
 }
 
-void Autentikacio::regisztracio()
+bool Autentikacio::regisztracio(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const int &telefonSzam, const int&iranyitoSzam, const bool &nem)
 {
+    return Adatbazis::getObjektum().regisztracioElmentese(felhasznaloNev,email,jelszo,teljesNev,szulEv,telefonSzam,nem,iranyitoSzam);
     /*SAConnection dbcon;
     dbcon.Connect("autokereskedes.sqlite","","",SA_SQLite_Client);*/
-    string username;
-    string password;
-    int a = 3;
-    bool adatbazisbanTalalhato = false;
-    cout << "Kerem adja meg a felhasznalonevet!" << endl;
-    cin >> username;
-    cout << "Kerem adja meg a jelszavat!" << endl;
-    cin >> password;
+//    string username;
+//    string password;
+//    int a = 3;
+//    bool adatbazisbanTalalhato = false;
+//    cout << "Kerem adja meg a felhasznalonevet!" << endl;
+//    cin >> username;
+//    cout << "Kerem adja meg a jelszavat!" << endl;
+//    cin >> password;
     /*SACommand select(&dbcon, "SELECT * FROM Bejelentkezesi_adatok");
     select.Execute();
     while(select.FetchNext()) {

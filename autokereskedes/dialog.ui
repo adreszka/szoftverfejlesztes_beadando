@@ -26,7 +26,7 @@
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="unregisteredPage">
     <property name="styleSheet">
@@ -150,6 +150,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Márka:</string>
       </property>
@@ -173,6 +176,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Típus:</string>
       </property>
@@ -195,6 +201,9 @@ color: rgb(0, 0, 0);</string>
         <width>41</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Vételár:</string>
@@ -222,6 +231,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>-tól:</string>
       </property>
@@ -248,6 +260,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>-ig:</string>
       </property>
@@ -260,6 +275,9 @@ color: rgb(0, 0, 0);</string>
         <width>41</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>SZŰRÉS</string>
@@ -274,6 +292,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Bérlési díj:</string>
       </property>
@@ -287,6 +308,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>-tól:</string>
       </property>
@@ -299,6 +323,9 @@ color: rgb(0, 0, 0);</string>
         <width>21</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>-ig:</string>
@@ -339,6 +366,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Üzemanyag:</string>
       </property>
@@ -351,6 +381,9 @@ color: rgb(0, 0, 0);</string>
         <width>61</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Meghajtás:</string>
@@ -374,6 +407,9 @@ color: rgb(0, 0, 0);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Benzin</string>
        </property>
@@ -390,6 +426,9 @@ color: rgb(0, 0, 0);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Dízel</string>
        </property>
@@ -402,6 +441,9 @@ color: rgb(0, 0, 0);</string>
          <width>91</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>Elektromos</string>
@@ -426,6 +468,9 @@ color: rgb(0, 0, 0);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Első kerék</string>
        </property>
@@ -442,6 +487,9 @@ color: rgb(0, 0, 0);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Hátsó kerék</string>
        </property>
@@ -454,6 +502,9 @@ color: rgb(0, 0, 0);</string>
          <width>81</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>Összkerék</string>
@@ -469,6 +520,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Évjárat:</string>
       </property>
@@ -482,6 +536,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>-tól:</string>
       </property>
@@ -494,6 +551,9 @@ color: rgb(0, 0, 0);</string>
         <width>21</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>-ig:</string>
@@ -534,6 +594,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Felszeretlségek:</string>
       </property>
@@ -546,6 +609,9 @@ color: rgb(0, 0, 0);</string>
         <width>41</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>GPS</string>
@@ -560,6 +626,9 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>ABS</string>
       </property>
@@ -572,6 +641,9 @@ color: rgb(0, 0, 0);</string>
         <width>51</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Klíma</string>
@@ -586,6 +658,9 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>ESP</string>
       </property>
@@ -598,6 +673,9 @@ color: rgb(0, 0, 0);</string>
         <width>61</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Rakéta</string>
@@ -612,6 +690,9 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Tolató radar</string>
       </property>
@@ -624,6 +705,9 @@ color: rgb(0, 0, 0);</string>
         <width>41</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Kivitel:</string>
@@ -647,6 +731,9 @@ color: rgb(0, 0, 0);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Ferdehátú</string>
        </property>
@@ -663,6 +750,9 @@ color: rgb(0, 0, 0);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Sedan</string>
        </property>
@@ -675,6 +765,9 @@ color: rgb(0, 0, 0);</string>
          <width>51</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>SUV</string>
@@ -690,6 +783,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Teljesítmény (LE):</string>
       </property>
@@ -703,6 +799,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>-tól:</string>
       </property>
@@ -715,6 +814,9 @@ color: rgb(0, 0, 0);</string>
         <width>21</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>-ig:</string>
@@ -755,6 +857,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Hengerűr tartalom:</string>
       </property>
@@ -768,6 +873,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>-tól:</string>
       </property>
@@ -780,6 +888,9 @@ color: rgb(0, 0, 0);</string>
         <width>21</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>-ig:</string>
@@ -820,6 +931,9 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Sebesség váltó:</string>
       </property>
@@ -842,6 +956,9 @@ color: rgb(0, 0, 0);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Manuális</string>
        </property>
@@ -857,6 +974,9 @@ color: rgb(0, 0, 0);</string>
          <width>91</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string>Automatikus</string>

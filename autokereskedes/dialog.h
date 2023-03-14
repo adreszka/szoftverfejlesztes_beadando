@@ -5,10 +5,12 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <list>
+#include <QMessageBox>
 
 #include "auto.h"
 #include "tarolo.h"
 #include "rendszerfuggvenyek.h"
+#include "autentikacio.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
