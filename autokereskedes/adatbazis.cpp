@@ -189,5 +189,75 @@ void Adatbazis::autoBerles(const string &rendszam, const int &felhasznalo_id)
     addKolcsonzes.Execute();
 }
 
+void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,
+                          int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
+                          int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
+                          const string& marka, const string& kialakitas)
+{
+    SAConnection dbcon;
+    dbcon.Connect("autokereskedes.sqlite","","",SA_SQLite_Client);
+    int marka_id, tipus_id, kialakitas_id, szamlalo = 0;
+    SACommand selectMarkak(&dbcon, "SELECT * FROM Marka WHERE Marka_nev = :1");
+    SACommand selectTipusok(&dbcon, "SELECT * FROM Tipus WHERE Tipus_nev = :1");
+    SACommand selectKialakitas(&dbcon, "SELECT * FROM Kialakitas WHERE Kialakitas_nev = :1");
+    SACommand insertAuto(&dbcon, "INSERT INTO Auto VALUES(:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:11,:12,:13,:14)");
+    selectKialakitas << kialakitas.c_str();
+    selectKialakitas.Execute();
+    while (selectKialakitas.FetchNext())
+    {
+        kialakitas_id = selectKialakitas[1].asLong();
+    }
+    selectMarkak << marka.c_str();
+    selectMarkak.Execute();
+    while (selectMarkak.FetchNext())
+    {
+        szamlalo++;
+    }
+    if (szamlalo == 0)
+    {
+        SACommand insertMarka(&dbcon, "INSERT INTO Marka(Marka_nev) VALUES (:1)");
+        insertMarka << marka.c_str();
+        insertMarka.Execute();
+    }
+    szamlalo = 0;
+    selectMarkak.Execute();
+    while (selectMarkak.FetchNext())
+    {
+        marka_id = selectMarkak[1].asLong();
+    }
+    selectTipusok << tipus.c_str();
+    selectTipusok.Execute();
+    while (selectTipusok.FetchNext())
+    {
+        szamlalo++;
+    }
+    if (szamlalo == 0)
+    {
+        SACommand insertTipus(&dbcon, "INSERT INTO Tipus(Tipus_nev, Marka_Id) VALUES(:1,:2)");
+        insertTipus << tipus.c_str();
+        insertTipus << (long)marka_id;
+        insertTipus.Execute();
+    }
+    selectTipusok.Execute();
+    while (selectTipusok.FetchNext())
+    {
+        tipus_id = selectTipusok[1].asLong();
+    }
+    insertAuto << rendszam.c_str();
+    insertAuto << (long)ar;
+    insertAuto << (long)napi_dij;
+    insertAuto << szin.c_str();
+    insertAuto << (long)csomagtarto_meret;
+    insertAuto << uzemanyag.c_str();
+    insertAuto << (long)evjarat;
+    insertAuto << (long)motor_teljesitmeny;
+    insertAuto << (long)hengerutartalom;
+    insertAuto << (bool)sebessegvalto;
+    insertAuto << hajtas.c_str();
+    insertAuto << (long)tipus_id;
+    insertAuto << (long)kialakitas_id;
+    insertAuto << (long)1;
+    insertAuto.Execute();
+}
 
 
