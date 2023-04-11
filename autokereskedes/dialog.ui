@@ -26,7 +26,7 @@
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="unregisteredPage">
     <property name="styleSheet">
@@ -47,7 +47,7 @@
      <widget class="QPushButton" name="loginButtonUnregistered">
       <property name="geometry">
        <rect>
-        <x>619</x>
+        <x>620</x>
         <y>10</y>
         <width>141</width>
         <height>41</height>
@@ -1095,7 +1095,7 @@ color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="profileButtonRegistered">
       <property name="geometry">
        <rect>
-        <x>619</x>
+        <x>620</x>
         <y>10</y>
         <width>141</width>
         <height>41</height>
@@ -2137,9 +2137,9 @@ color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="backButtonAuthentication">
       <property name="geometry">
        <rect>
-        <x>629</x>
+        <x>620</x>
         <y>10</y>
-        <width>131</width>
+        <width>141</width>
         <height>41</height>
        </rect>
       </property>
@@ -2484,8 +2484,8 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="carPage">
-    <widget class="QWidget" name="headerCar" native="true">
+   <widget class="QWidget" name="carUnregisteredPage">
+    <widget class="QWidget" name="headerCarUnregistered" native="true">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -2497,7 +2497,7 @@ color: rgb(0, 0, 0);</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(0, 0, 0);</string>
      </property>
-     <widget class="QLabel" name="headerLabelCar">
+     <widget class="QLabel" name="headerLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2519,11 +2519,11 @@ color: rgb(0, 0, 0);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="widget" native="true">
+    <widget class="QWidget" name="backgroungCarUnregistered" native="true">
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>160</y>
+       <y>180</y>
        <width>621</width>
        <height>511</height>
       </rect>
@@ -2531,7 +2531,7 @@ color: rgb(0, 0, 0);</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(0, 0, 127);</string>
      </property>
-     <widget class="QLabel" name="nameLabelCar">
+     <widget class="QLabel" name="nameLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -2540,6 +2540,11 @@ color: rgb(0, 0, 0);</string>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
@@ -2547,11 +2552,11 @@ color: rgb(0, 0, 0);</string>
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="yearLabelCar">
+     <widget class="QLabel" name="yearLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>130</y>
+        <y>120</y>
         <width>51</width>
         <height>16</height>
        </rect>
@@ -2560,16 +2565,19 @@ color: rgb(0, 0, 0);</string>
        <font>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Évjárat:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="yearValueLabelCar">
+     <widget class="QLabel" name="yearValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>130</y>
+        <y>120</y>
         <width>51</width>
         <height>16</height>
        </rect>
@@ -2579,15 +2587,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="fuelLabelCar">
+     <widget class="QLabel" name="fuelLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>170</y>
+        <y>160</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2596,16 +2607,19 @@ color: rgb(0, 0, 0);</string>
        <font>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Üzemanyag:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="fuelValueLabelCar">
+     <widget class="QLabel" name="fuelValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>170</y>
+        <y>160</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2615,15 +2629,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="sizeLabelCar">
+     <widget class="QLabel" name="sizeLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>250</y>
+        <y>240</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -2633,15 +2650,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Hengerűrtartalom:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="sizeValueLabelCar">
+     <widget class="QLabel" name="sizeValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>250</y>
+        <y>240</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2651,15 +2671,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="powerLabelCar">
+     <widget class="QLabel" name="powerLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>210</y>
+        <y>200</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -2668,16 +2691,19 @@ color: rgb(0, 0, 0);</string>
        <font>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Teljesítmény:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="powerValueLabelCar">
+     <widget class="QLabel" name="powerValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>210</y>
+        <y>200</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -2687,15 +2713,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="driveLabelCar">
+     <widget class="QLabel" name="driveLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>290</y>
+        <y>280</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2705,15 +2734,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Meghajtás:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="driveValueLabelCar">
+     <widget class="QLabel" name="driveValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>290</y>
+        <y>280</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -2722,16 +2754,19 @@ color: rgb(0, 0, 0);</string>
        <font>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="gearLabelCar">
+     <widget class="QLabel" name="gearLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>330</y>
+        <y>320</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -2740,16 +2775,19 @@ color: rgb(0, 0, 0);</string>
        <font>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Sebességváltó:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="gearValueLabelCar">
+     <widget class="QLabel" name="gearValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>330</y>
+        <y>320</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -2759,15 +2797,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="designLabelCar">
+     <widget class="QLabel" name="designLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>370</y>
+        <y>360</y>
         <width>41</width>
         <height>16</height>
        </rect>
@@ -2777,15 +2818,18 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Kivitel:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="designValueLabelCar">
+     <widget class="QLabel" name="designValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>370</y>
+        <y>360</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -2795,11 +2839,14 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="priceLabelCar">
+     <widget class="QLabel" name="priceLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -2813,11 +2860,14 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Vételár:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="rentLabelCar">
+     <widget class="QLabel" name="rentLabelCarUnregistered">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -2834,11 +2884,14 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Bérlési díj:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="priceValueLabelCar">
+     <widget class="QLabel" name="priceValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -2852,11 +2905,14 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="rentValueLabelCar">
+     <widget class="QLabel" name="rentValueLabelCarUnregistered">
       <property name="geometry">
        <rect>
         <x>480</x>
@@ -2870,11 +2926,669 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="buyButtonCar">
+     <widget class="QLabel" name="equipmentLabelCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>120</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Felszereltségek:</string>
+      </property>
+     </widget>
+     <widget class="Line" name="lineCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>90</y>
+        <width>20</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="absCheckBoxCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>180</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>ABS</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="gpsCheckBoxCarUnregistered">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>150</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>GPS</string>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="acCheckBoxCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>150</y>
+        <width>51</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Klíma</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="espCheckBoxCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>180</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>ESP</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="rocketCheckBoxCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>150</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Rakéta</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="radarCheckBoxCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>180</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Tolató radar</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="trunkLabelCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>400</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Csomagtartó méret:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="trunkValueLabelCarUnregistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>400</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="backButtonCarUnregistered">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>10</y>
+       <width>141</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string>visszalépés</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="carRegisteredPage">
+    <widget class="QWidget" name="headerCarRegistered" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>800</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <widget class="QLabel" name="headerLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>351</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>35</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Autó Kereskedés</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="backgroungCarRegistered" native="true">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>180</y>
+       <width>621</width>
+       <height>511</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);</string>
+     </property>
+     <widget class="QLabel" name="nameLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="yearLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>120</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Évjárat:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="yearValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>120</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fuelLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>160</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Üzemanyag:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="fuelValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>160</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="sizeLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>240</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Hengerűrtartalom:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="sizeValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>240</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="powerLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>200</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Teljesítmény:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="powerValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>200</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="driveLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>280</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Meghajtás:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="driveValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>280</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="gearLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>320</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Sebességváltó:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="gearValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>320</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="designLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>360</y>
+        <width>41</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Kivitel:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="designValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>360</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="priceLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>280</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Vételár:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="rentLabelCarRegistered">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>280</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Bérlési díj:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="priceValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>310</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="rentValueLabelCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>310</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buyButtonCarRegistered">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -2888,11 +3602,14 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Vásárlás</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="rentButtonCar">
+     <widget class="QPushButton" name="rentButtonCarRegistered">
       <property name="geometry">
        <rect>
         <x>480</x>
@@ -2906,11 +3623,14 @@ color: rgb(0, 0, 0);</string>
         <pointsize>10</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Bérlés</string>
       </property>
      </widget>
-     <widget class="QLabel" name="equipmentLabelCar">
+     <widget class="QLabel" name="equipmentLabelCarRegistered">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -2919,111 +3639,249 @@ color: rgb(0, 0, 0);</string>
         <height>16</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>Felszereltségek:</string>
       </property>
      </widget>
+     <widget class="Line" name="lineCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>90</y>
+        <width>20</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="absCheckBoxCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>180</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>ABS</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="espCheckBoxCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>180</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>ESP</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="radarCheckBoxCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>180</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Tolató radar</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="gpsCheckBoxCarRegistered">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>150</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>GPS</string>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="rocketCheckBoxCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>150</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Rakéta</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="acCheckBoxCarRegistered">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>150</y>
+        <width>51</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Klíma</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QCheckBox" name="absCheckBoxCar">
+    <widget class="QPushButton" name="backButtonCarRegistered">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>340</y>
-       <width>41</width>
-       <height>22</height>
+       <x>620</x>
+       <y>10</y>
+       <width>141</width>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string>visszalépés</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="trunkValueLabelCarRegistered">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>580</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>ABS</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QCheckBox" name="espCheckBoxCar">
+    <widget class="QLabel" name="trunkLabelCarRegistered">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>340</y>
-       <width>41</width>
-       <height>22</height>
+       <x>120</x>
+       <y>580</y>
+       <width>121</width>
+       <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>ESP</string>
+      <string>Csomagtartó méret:</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="acCheckBoxCar">
+   </widget>
+   <widget class="QWidget" name="profilePage">
+    <widget class="QWidget" name="headerProfile" native="true">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>310</y>
-       <width>51</width>
-       <height>22</height>
+       <x>0</x>
+       <y>0</y>
+       <width>800</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
      </property>
-     <property name="text">
-      <string>Klíma</string>
-     </property>
+     <widget class="QLabel" name="headerLabelProfile">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>351</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>35</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Autó Kereskedés</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QCheckBox" name="gpsCheckBoxCar">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QWidget" name="backgroungProfile" native="true">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>310</y>
-       <width>41</width>
-       <height>22</height>
+       <x>90</x>
+       <y>180</y>
+       <width>621</width>
+       <height>511</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>GPS</string>
-     </property>
-     <property name="tristate">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="rocketCheckBoxCar">
-     <property name="geometry">
-      <rect>
-       <x>600</x>
-       <y>310</y>
-       <width>61</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>Rakéta</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="radarCheckBoxCar">
-     <property name="geometry">
-      <rect>
-       <x>600</x>
-       <y>340</y>
-       <width>91</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>Tolató radar</string>
+      <string notr="true">background-color: rgb(0, 0, 127);</string>
      </property>
     </widget>
    </widget>

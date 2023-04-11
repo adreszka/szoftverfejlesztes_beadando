@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <list>
 #include <QMessageBox>
+#include <QSignalMapper>
 
 #include "auto.h"
 #include "tarolo.h"
@@ -24,9 +25,13 @@ public:
     Dialog(QWidget *parent = nullptr);
     ~Dialog();
 
-    void listazas(list<Auto> autok);
+    void listUnregistered(list<Auto> cars);
+    void listRegistered(list<Auto> cars);
 
 private slots:
+    void showCarUnregisteredPage(Auto car);
+    void showCarRegisteredPage(Auto car);
+
     void on_loginButtonUnregistered_clicked();
 
     void on_registrationButtonLogin_clicked();
@@ -43,10 +48,25 @@ private slots:
 
     void on_brandComboBoxUnregistered_currentIndexChanged(int index);
 
+    void on_filerButtonRegistered_clicked();
+
+    void on_profileButtonRegistered_clicked();
+
+    void on_brandComboBoxRegistered_currentIndexChanged(int index);
+
+    void on_backButtonCarUnregistered_clicked();
+
+    void on_backButtonCarRegistered_clicked();
+
 private:
     Ui::Dialog *ui;
 
-    QWidget *elemek = new QWidget();
-    QVBoxLayout *elemTarolo = new QVBoxLayout(elemek);
+    //unregistered listed cars
+    QWidget *itemsUnregistered = new QWidget();
+    QVBoxLayout *itemContainerUnregistered = new QVBoxLayout(itemsUnregistered);
+
+    //registered listed cars
+    QWidget *itemsRegistered = new QWidget();
+    QVBoxLayout *itemContainerRegistered = new QVBoxLayout(itemsRegistered);
 };
 #endif // DIALOG_H
