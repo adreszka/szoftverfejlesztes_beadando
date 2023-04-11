@@ -21,7 +21,7 @@ class Auto
     string hajtas;
     string marka;
     string tipus;
-    bool raktaron;             //0 nincs itt/1 itt van
+    bool raktaron;             //0 nincs itt 1 itt van
     string kialakitas;
     list<string> felszerelesek;
 public:
