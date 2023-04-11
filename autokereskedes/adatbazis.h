@@ -34,15 +34,6 @@ public:
     void autoVasarlas(const string& rendszam);
     void markaBeolvasas();
     bool regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const int &telefonSzam, const int&iranyitoSzam, const bool &nem);
+    void autoBerles(const string &rendszam, const int &felhasznalo_id);
 };
-
-
-//Adatbazis adatbazis;
-//adatbazis.csatlakozas("autokereskedes.sqlite");
-//adatbazis.teszt();
-//adatbazis.autokBeolvas();
-//adatbazis.felhasznaloBeolvas("teszt");
-//Tarolo::getObjektum().kiirTeszt();
-//adatbazis.autoVasarlas("FOS123");
-
 #endif // ADATBAZIS_H

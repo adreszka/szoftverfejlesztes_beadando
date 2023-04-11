@@ -27,7 +27,7 @@ void Adatbazis::teszt()
 
 void Adatbazis::autokBeolvas()
 {
-    SACommand selectauto(&dbcon,"SELECT a.Rendszam, Ar, Napidij, Szin, Csomagtarto_merete, Uzemanyag, Evjarat, Motor_teljesitmenye, Hengerurtartalom, Sebessegvalto, Hajtas, m.Marka, t.Tipus, Raktaron, k.Kialakitas"
+    SACommand selectauto(&dbcon,"SELECT a.Rendszam, Ar, Napidij, Szin, Csomagtarto_merete, Uzemanyag, Evjarat, Motor_teljesitmenye, Hengerurtartalom, Sebessegvalto, Hajtas, m.Marka, t.Tipus, Raktaron, k.Kialakitas_nev"
                             " FROM Auto a JOIN Kialakitas k ON a.Kialakitas_Id = k.Kialakitas_Id JOIN Tipus t ON a.Tipus_Id = t.Tipus_Id JOIN Marka m ON m.Marka_Id = t.Marka_Id");
     SACommand selectfelszereltseg(&dbcon, "SELECT felsz"
                       " FROM Felszereltseg_seged fs JOIN Felszereltseg f ON fs.Felsz_Id = f.Felsz_Id"
@@ -176,6 +176,17 @@ bool Adatbazis::regisztracioElmentese(const string &felhasznaloNev, const string
     addAdatok << (long)iranyitoSzam;
     addAdatok.Execute();
     return adatbazisbanTalalhato;
+}
+
+void Adatbazis::autoBerles(const string &rendszam, const int &felhasznalo_id)
+{
+    SACommand updateraktaron(&dbcon, "UPDATE Auto SET Raktaron = 0 WHERE Rendszam = :1");
+    SACommand addKolcsonzes(&dbcon, "INSERT INTO Kolcsonzes(Rendszam, Felhasznalo_Id) VALUES (:1, :2)");
+    updateraktaron << rendszam.c_str();
+    updateraktaron.Execute();
+    addKolcsonzes << rendszam.c_str();
+    addKolcsonzes << (long)felhasznalo_id;
+    addKolcsonzes.Execute();
 }
 
 
