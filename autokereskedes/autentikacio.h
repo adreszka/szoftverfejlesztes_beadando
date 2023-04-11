@@ -15,7 +15,7 @@ class Autentikacio
 public:
     static Autentikacio& getObjektum();
     bool bejelentkezes(const string &felhasznalo_nev, const string &jelszo);
-    bool regisztracio(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const int &telefonSzam, const int&iranyitoSzam, const bool &nem);
+    bool regisztracio(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const string &telefonSzam, const int&iranyitoSzam, const bool &nem);
 };
 
 #endif // AUTENTIKACIO_H

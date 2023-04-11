@@ -95,8 +95,8 @@ void Adatbazis::felhasznaloBeolvas(const string& felhasznalo_nev)
     while (selectfelhasznalo.FetchNext()){
         int felhasznalo_id = selectfelhasznalo[1].asLong();
         string teljes_nev = (string)selectfelhasznalo[2].asString();
-        string szul_dat = (string)selectfelhasznalo[3].asString();
-        int telefonszam = selectfelhasznalo[4].asLong();
+        int szul_dat = selectfelhasznalo[3].asLong();
+        string telefonszam = (string)selectfelhasznalo[4].asString();
         string email = (string)selectfelhasznalo[5].asString();
         bool nem = selectfelhasznalo[6].asBool();
         int iranyitoszam = selectfelhasznalo[7].asLong();
@@ -140,7 +140,7 @@ void Adatbazis::markaBeolvasas()
     Tarolo::getObjektum().setMarkak(markak);
 }
 
-bool Adatbazis::regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const int &telefonSzam, const int &iranyitoSzam, const bool &nem)
+bool Adatbazis::regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const string &telefonSzam, const int &iranyitoSzam, const bool &nem)
 {
     boolean adatbazisbanTalalhato = false;
     int felhasznalo_id;
@@ -170,7 +170,7 @@ bool Adatbazis::regisztracioElmentese(const string &felhasznaloNev, const string
     addAdatok << (long)felhasznalo_id;
     addAdatok << teljesNev.c_str();
     addAdatok << (long)szulEv;
-    addAdatok << (long)telefonSzam;
+    addAdatok << telefonSzam.c_str();
     addAdatok << email.c_str();
     addAdatok << (bool)nem;
     addAdatok << (long)iranyitoSzam;

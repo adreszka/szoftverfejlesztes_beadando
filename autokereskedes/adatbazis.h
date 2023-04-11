@@ -33,7 +33,7 @@ public:
     void felhasznaloBeolvas(const string& felhasznalo_nev);
     void autoVasarlas(const string& rendszam);
     void markaBeolvasas();
-    bool regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const int &telefonSzam, const int&iranyitoSzam, const bool &nem);
+    bool regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const string &telefonSzam, const int&iranyitoSzam, const bool &nem);
     void autoBerles(const string &rendszam, const int &felhasznalo_id);
 };
 #endif // ADATBAZIS_H
