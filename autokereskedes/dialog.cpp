@@ -371,7 +371,7 @@ void Dialog::on_loginButtonLogin_clicked()
 //registration page
 void Dialog::on_registrationButtonRegistration_clicked()
 {
-    if(Autentikacio::getObjektum().regisztracio(ui->usernameFieldRegistration->text().toStdString(), ui->emailFieldRegistration->text().toStdString(), ui->passwordFieldRegistration->text().toStdString(), ui->nameFieldRegistration->text().toStdString(), ui->birthFieldRegistration->text().toInt(), ui->phoneFieldRegistration->text().toInt(), ui->postcodeFieldRegistration->text().toInt(), ui->maleRadioRegistration->isChecked()?false:true))
+    if(Autentikacio::getObjektum().regisztracio(ui->usernameFieldRegistration->text().toStdString(), ui->emailFieldRegistration->text().toStdString(), ui->passwordFieldRegistration->text().toStdString(), ui->nameFieldRegistration->text().toStdString(), ui->birthFieldRegistration->text().toInt(), ui->phoneFieldRegistration->text().toStdString(), ui->postcodeFieldRegistration->text().toInt(), ui->maleRadioRegistration->isChecked()?false:true))
     {
         QMessageBox::warning(this, "Hibás felhasználó név!", "Ez a felhasználónév már foglalt!");
     }else{

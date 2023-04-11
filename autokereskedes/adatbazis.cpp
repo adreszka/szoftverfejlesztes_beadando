@@ -27,7 +27,7 @@ void Adatbazis::teszt()
 
 void Adatbazis::autokBeolvas()
 {
-    SACommand selectauto(&dbcon,"SELECT a.Rendszam, Ar, Napidij, Szin, Csomagtarto_merete, Uzemanyag, Evjarat, Motor_teljesitmenye, Hengerurtartalom, Sebessegvalto, Hajtas, m.Marka, t.Tipus, Raktaron, k.Kialakitas_nev"
+    SACommand selectauto(&dbcon,"SELECT a.Rendszam, Ar, Napidij, Szin, Csomagtarto_merete, Uzemanyag, Evjarat, Motor_teljesitmenye, Hengerurtartalom, Sebessegvalto, Hajtas, m.Marka_nev, t.Tipus_nev, Raktaron, k.Kialakitas_nev"
                             " FROM Auto a JOIN Kialakitas k ON a.Kialakitas_Id = k.Kialakitas_Id JOIN Tipus t ON a.Tipus_Id = t.Tipus_Id JOIN Marka m ON m.Marka_Id = t.Marka_Id");
     SACommand selectfelszereltseg(&dbcon, "SELECT felsz"
                       " FROM Felszereltseg_seged fs JOIN Felszereltseg f ON fs.Felsz_Id = f.Felsz_Id"
@@ -129,7 +129,7 @@ void Adatbazis::autoVasarlas(const string& rendszam)
 
 void Adatbazis::markaBeolvasas()
 {
-    SACommand markaSelect(&dbcon, "SELECT Marka, Tipus FROM Marka JOIN Tipus ON Marka.Marka_Id = Tipus.Marka_Id");
+    SACommand markaSelect(&dbcon, "SELECT Marka_nev, Tipus_nev FROM Marka JOIN Tipus ON Marka.Marka_Id = Tipus.Marka_Id");
     markaSelect.Execute();
 
     map<string, list<string>> markak;
