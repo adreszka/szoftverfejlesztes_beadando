@@ -1,5 +1,10 @@
 #include "autentikacio.h"
 
+felhasznalo_tipus Autentikacio::getTipus() const
+{
+    return tipus;
+}
+
 Autentikacio &Autentikacio::getObjektum()
 {
     static Autentikacio autentikacio;
