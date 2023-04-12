@@ -29,7 +29,7 @@ public:
     void csatlakozas (const string& sqlite_fajl);
     void teszt ();
     void autokBeolvas();
-    bool bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo);
+    string bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo);
     void felhasznaloBeolvas(const string& felhasznalo_nev);
     void autoVasarlas(const string& rendszam);
     void markaBeolvasas();
@@ -39,5 +39,6 @@ public:
                               int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
                               int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
                               const string& marka, const string& kialakitas, list<string> felszerelesek);
+    void autoTorles(const string& rendszam);
 };
 #endif // ADATBAZIS_H

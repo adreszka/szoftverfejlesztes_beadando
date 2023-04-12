@@ -6,10 +6,18 @@
 
 #include "adatbazis.h"
 
+enum felhasznalo_tipus
+{
+    admin,
+    kereskedo,
+    felhasznalo
+};
+
 using namespace std;
 
 class Autentikacio
 {
+    felhasznalo_tipus tipus;
     Autentikacio()=default;
     Autentikacio(const Autentikacio& other)=default;
 public:

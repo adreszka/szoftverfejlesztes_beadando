@@ -68,20 +68,19 @@ void Adatbazis::autokBeolvas()
     }
 }
 
-bool Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo)
+string Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo)
 {
-    boolean adatbazisbanTalalhato = false;
     SACommand select(&dbcon, "SELECT * FROM Bejelentkezesi_adatok");
         select.Execute();
         while(select.FetchNext()) {
             string felhasznalo_nevdb = (string)select[2].asString();
             string jelszodb = (string)select[3].asString();
+            string hozzaferes = (string)select[4].asString();
             if (felhasznalo_nev == felhasznalo_nevdb && jelszo == jelszodb) {
-                adatbazisbanTalalhato = true;
-                break;
+                return hozzaferes;
             }
         }
-    return adatbazisbanTalalhato;
+    return "";
 }
 
 void Adatbazis::felhasznaloBeolvas(const string& felhasznalo_nev)
@@ -278,4 +277,8 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
     }
 }
 
+void Adatbazis::autoTorles(const string &rendszam)
+{
+    Tarolo::getObjektum().torolAuto(rendszam);
 
+}
