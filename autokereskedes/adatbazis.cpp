@@ -280,5 +280,10 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
 void Adatbazis::autoTorles(const string &rendszam)
 {
     Tarolo::getObjektum().torolAuto(rendszam);
-
+    SACommand deleteFelszerelesek(&dbcon, "DELETE FROM Felszereltseg_seged WHERE Rendszam = :1");
+    SACommand deleteAuto(&dbcon, "DELETE FROM Auto WHERE Rendszam = :1");
+    deleteFelszerelesek << rendszam.c_str();
+    deleteFelszerelesek.Execute();
+    deleteAuto << rendszam.c_str();
+    deleteAuto.Execute();
 }
