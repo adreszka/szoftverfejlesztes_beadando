@@ -193,15 +193,16 @@ void Adatbazis::autoBerles(const string &rendszam, const int &felhasznalo_id)
 void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,
                           int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
                           int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
-                          const string& marka, const string& kialakitas)
+                          const string& marka, const string& kialakitas, list<string> felszerelesek)
 {
-    SAConnection dbcon;
-    dbcon.Connect("autokereskedes.sqlite","","",SA_SQLite_Client);
+    list<int> felsz_id;
     int marka_id, tipus_id, kialakitas_id, szamlalo = 0;
     SACommand selectMarkak(&dbcon, "SELECT * FROM Marka WHERE Marka_nev = :1");
     SACommand selectTipusok(&dbcon, "SELECT * FROM Tipus WHERE Tipus_nev = :1");
     SACommand selectKialakitas(&dbcon, "SELECT * FROM Kialakitas WHERE Kialakitas_nev = :1");
-    SACommand insertAuto(&dbcon, "INSERT INTO Auto VALUES(:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:11,:12,:13,:14)");
+    SACommand selectFelszerelesek(&dbcon, "SELECT * FROM Felszereltseg");
+    SACommand insertFelszereles(&dbcon, "INSERT INTO Felszereltseg_seged VALUES (:1,:2)");
+    SACommand insertAuto(&dbcon, "INSERT INTO Auto VALUES (:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:11,:12,:13,:14)");
     selectKialakitas << kialakitas.c_str();
     selectKialakitas.Execute();
     while (selectKialakitas.FetchNext())
@@ -259,6 +260,23 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
     insertAuto << (long)kialakitas_id;
     insertAuto << (long)1;
     insertAuto.Execute();
+    selectFelszerelesek.Execute();
+    while (selectFelszerelesek.FetchNext()) {
+        string felszereles = (string)selectFelszerelesek[2].asString();
+        for (auto& felsz : felszerelesek) {
+            if (felszereles == felsz) {
+                int id = selectFelszerelesek[1].asLong();
+                felsz_id.push_back(id);
+            }
+        }
+    }
+    if (!felsz_id.empty()) {
+        for (auto& id : felsz_id) {
+            insertFelszereles << rendszam.c_str();
+            insertFelszereles << (long)id;
+            insertFelszereles.Execute();
+        }
+    }
 }
 
 

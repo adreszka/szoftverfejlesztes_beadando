@@ -38,6 +38,6 @@ public:
     void autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,
                               int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
                               int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
-                              const string& marka, const string& kialakitas);
+                              const string& marka, const string& kialakitas, list<string> felszerelesek);
 };
 #endif // ADATBAZIS_H
