@@ -27,11 +27,9 @@ void Tarolo::setMarkak(const map<string, list<string> > &newMarkak)
 
 void Tarolo::torolAuto(const string &rendszam)
 {
-    remove_if(Tarolo::getObjektum().autok.begin(), Tarolo::getObjektum().autok.end(), [rendszam](Auto &temp){
+    Tarolo::getObjektum().autok.remove_if([rendszam](Auto temp){
         return temp.getRendszam() == rendszam;
     });
-
-    kiirTeszt();
 }
 
 Tarolo &Tarolo::getObjektum()

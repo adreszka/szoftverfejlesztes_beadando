@@ -447,6 +447,5 @@ void Dialog::on_buyButtonCarRegistered_clicked()
     Adatbazis::getObjektum().autoVasarlas(ui->licenceValueCarRegistered->text().toStdString());
 
     ui->stackedWidget->setCurrentWidget(ui->registeredPage);
-    listRegistered(Tarolo::getObjektum().getAutok());
-//    ui->filerButtonRegistered->animateClick();
+    ui->filerButtonRegistered->animateClick();
 }
