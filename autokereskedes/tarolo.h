@@ -26,6 +26,7 @@ public:
     void setFelhasznalo(const RegisztraltFelhasznalo &newFelhasznalo);
     map<string, list<string>> getMarkak() const;
     void setMarkak(const map<string, list<string> > &newMarkak);
+    void torolAuto(const string& rendszam);
 };
 
 #endif // TAROLO_H

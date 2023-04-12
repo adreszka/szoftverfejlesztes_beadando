@@ -125,6 +125,7 @@ void Adatbazis::autoVasarlas(const string& rendszam)
     deleteAutoFelszereles.Execute();
     deleteAuto << rendszam.c_str();
     deleteAuto.Execute();
+    Tarolo::getObjektum().torolAuto(rendszam);
 }
 
 void Adatbazis::markaBeolvasas()
