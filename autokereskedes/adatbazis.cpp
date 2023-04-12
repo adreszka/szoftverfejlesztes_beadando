@@ -81,7 +81,6 @@ bool Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const str
                 break;
             }
         }
-
     return adatbazisbanTalalhato;
 }
 
