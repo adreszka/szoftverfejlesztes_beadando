@@ -40,5 +40,6 @@ public:
                               int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
                               const string& marka, const string& kialakitas, list<string> felszerelesek);
     void autoTorles(const string& rendszam);
+    void fiokTorles(const string& felhasznalo_nev);
 };
 #endif // ADATBAZIS_H

@@ -287,3 +287,22 @@ void Adatbazis::autoTorles(const string &rendszam)
     deleteAuto << rendszam.c_str();
     deleteAuto.Execute();
 }
+
+void Adatbazis::fiokTorles(const string &felhasznalo_nev)
+{
+    int felhaszn_id;
+    SACommand selectFelhasznalo(&dbcon, "SELECT * FROM Bejelentkezesi_adatok WHERE Felhasznalo_nev = :1");
+    SACommand deleteFelhasznaloAdatok(&dbcon, "DELETE FROM Felhasznalo WHERE Felhasznalo_Id = :1");
+    SACommand deleteFelhasznaloBejelentkezesiAdatok(&dbcon, "DELETE FROM "
+                                                            "Bejelentkezesi_adatok WHERE Felhasznalo_Id = :1");
+    selectFelhasznalo << felhasznalo_nev.c_str();
+    selectFelhasznalo.Execute();
+    while (selectFelhasznalo.FetchNext())
+    {
+        felhaszn_id = selectFelhasznalo[1].asLong();
+    }
+    deleteFelhasznaloAdatok << (long)felhaszn_id;
+    deleteFelhasznaloAdatok.Execute();
+    deleteFelhasznaloBejelentkezesiAdatok << (long)felhaszn_id;
+    deleteFelhasznaloBejelentkezesiAdatok.Execute();
+}
