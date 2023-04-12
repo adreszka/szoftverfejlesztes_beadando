@@ -135,34 +135,41 @@ void Dialog::showCarUnregisteredPage(Auto car)
 
 void Dialog::listUnregistered(list<Auto> cars)
 {
-//    if(!elemek->children().isEmpty())
-//    {
-//        for(int i = 0; i < elemek->children().size(); ++i)
-//        {
-//            std::cout << "asd" << endl;
-//            auto layout = *elemek->children().toVector().begin();
-//            delete layout;
-//            elemek->children().toVector().pop_front();
-//        }
-//    }
+    //delete records
+    for(auto i : itemListUnregistered)
+    {
+        for(auto j : i.second.second)
+        {
+            j->deleteLater();
+        }
 
+        i.second.first->deleteLater();
+        i.first->deleteLater();
+    }
+    itemListUnregistered.clear();
+
+    //add records
     for(auto i : cars)
     {
         QHBoxLayout *record = new QHBoxLayout();
         itemContainerUnregistered->addLayout(record);
+        itemListUnregistered.insert(pair<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>>(record, pair<QPushButton*, list<QLabel*>>()));
 
         QPushButton *button = new QPushButton();
         button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
         connect(button, &QPushButton::clicked, [=]{showCarUnregisteredPage(i);});
         record->addWidget(button);
+        itemListUnregistered[record] = pair<QPushButton*, list<QLabel*>>(button, list<QLabel*>());
 
         QLabel *price = new QLabel();
         price->setText(QString::fromStdString(to_string(i.getAr())));
         record->addWidget(price);
+        itemListUnregistered[record].second.push_back(price);
 
         QLabel *rentPrice = new QLabel();
         rentPrice->setText(QString::fromStdString(to_string(i.getNapidij())));
         record->addWidget(rentPrice);
+        itemListUnregistered[record].second.push_back(rentPrice);
     }
 }
 
@@ -209,6 +216,8 @@ void Dialog::on_filerButtonUnregistered_clicked()
 void Dialog::on_brandComboBoxUnregistered_currentIndexChanged(int index)
 {
     ui->typeComboBoxUnregistered->clear();
+
+    ui->typeComboBoxUnregistered->addItem("Válasszon");
 
     map<string, list<string>> temp = Tarolo::getObjektum().getMarkak();
     for(auto i : temp)
@@ -269,23 +278,41 @@ void Dialog::showCarRegisteredPage(Auto car)
 
 void Dialog::listRegistered(list<Auto> cars)
 {
+    //delete records
+    for(auto i : itemListRegistered)
+    {
+        for(auto j : i.second.second)
+        {
+            j->deleteLater();
+        }
+
+        i.second.first->deleteLater();
+        i.first->deleteLater();
+    }
+    itemListRegistered.clear();
+
+    //add records
     for(auto i : cars)
     {
         QHBoxLayout *record = new QHBoxLayout();
         itemContainerRegistered->addLayout(record);
+        itemListRegistered.insert(pair<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>>(record, pair<QPushButton*, list<QLabel*>>()));
 
         QPushButton *button = new QPushButton();
         button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
         connect(button, &QPushButton::clicked, [=]{showCarRegisteredPage(i);});
         record->addWidget(button);
+        itemListRegistered[record] = pair<QPushButton*, list<QLabel*>>(button, list<QLabel*>());
 
         QLabel *price = new QLabel();
         price->setText(QString::fromStdString(to_string(i.getAr())));
         record->addWidget(price);
+        itemListRegistered[record].second.push_back(price);
 
         QLabel *rentPrice = new QLabel();
         rentPrice->setText(QString::fromStdString(to_string(i.getNapidij())));
         record->addWidget(rentPrice);
+        itemListRegistered[record].second.push_back(rentPrice);
     }
 }
 
@@ -331,6 +358,8 @@ void Dialog::on_filerButtonRegistered_clicked()
 void Dialog::on_brandComboBoxRegistered_currentIndexChanged(int index)
 {
     ui->typeComboBoxRegistered->clear();
+
+    ui->typeComboBoxRegistered->addItem("Válasszon");
 
     map<string, list<string>> temp = Tarolo::getObjektum().getMarkak();
     for(auto i : temp)

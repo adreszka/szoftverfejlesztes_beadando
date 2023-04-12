@@ -4,9 +4,10 @@
 #include <QDialog>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <list>
 #include <QMessageBox>
 #include <QSignalMapper>
+#include <list>
+#include <map>
 
 #include "auto.h"
 #include "tarolo.h"
@@ -60,6 +61,10 @@ private slots:
 
 private:
     Ui::Dialog *ui;
+
+    //container of the listed items
+    map<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>> itemListUnregistered;
+    map<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>> itemListRegistered;
 
     //unregistered listed cars
     QWidget *itemsUnregistered = new QWidget();
