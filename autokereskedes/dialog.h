@@ -59,6 +59,8 @@ private slots:
 
     void on_backButtonCarRegistered_clicked();
 
+    void on_buyButtonCarRegistered_clicked();
+
 private:
     Ui::Dialog *ui;
 

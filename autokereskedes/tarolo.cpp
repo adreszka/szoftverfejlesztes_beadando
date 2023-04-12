@@ -27,11 +27,11 @@ void Tarolo::setMarkak(const map<string, list<string> > &newMarkak)
 
 void Tarolo::torolAuto(const string &rendszam)
 {
-    for (list<Auto>::const_iterator it = autok.begin(); it != autok.end(); it++) {
-        if (it->getRendszam() == rendszam) {
-            autok.erase(it);
-        }
-    }
+    remove_if(Tarolo::getObjektum().autok.begin(), Tarolo::getObjektum().autok.end(), [rendszam](Auto &temp){
+        return temp.getRendszam() == rendszam;
+    });
+
+    kiirTeszt();
 }
 
 Tarolo &Tarolo::getObjektum()
@@ -45,14 +45,14 @@ void Tarolo::hozzaAd(const Auto &a)
     autok.push_back(a);
 }
 
-//void Tarolo::kiirTeszt()
-//{
-//    for(auto &i : this->getObjektum().autok){
-//        cout << i.getRendszam()<< endl;
-//        for (auto &j : i.getFelszerelesek()){
-//            cout << j << " ";
-//        }
-//        cout << endl;
-//    }
-//    cout << this->getObjektum().getFelhasznalo().getTeljes_nev();
-//}
+void Tarolo::kiirTeszt()
+{
+    for(auto &i : this->getObjektum().autok){
+        cout << i.getRendszam()<< endl;
+        for (auto &j : i.getFelszerelesek()){
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+    cout << this->getObjektum().getFelhasznalo().getTeljes_nev() << endl;
+}

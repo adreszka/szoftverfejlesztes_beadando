@@ -247,6 +247,7 @@ void Dialog::showCarRegisteredPage(Auto car)
     ui->radarCheckBoxCarRegistered->setChecked(false);
 
     //set values
+    ui->licenceValueCarRegistered->setText(QString::fromStdString(car.getRendszam()));
     ui->nameLabelCarRegistered->setText(QString::fromStdString(car.getMarka() + " " + car.getTipus()));
     ui->yearValueLabelCarRegistered->setText(QString::fromStdString(to_string(car.getEvjarat())));
     ui->fuelValueLabelCarRegistered->setText(QString::fromStdString(car.getUzemanyag()));
@@ -393,7 +394,20 @@ void Dialog::on_loginButtonLogin_clicked()
     {
         QMessageBox::warning(this, "Sikertelen bejelentkezés!", "Hibás a beírt felhasználónév vagy jelszó!");
     }else{
-        ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+        switch(Autentikacio::getObjektum().getTipus())
+        {
+        case felhasznalo_tipus::felhasznalo :
+            ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+            break;
+
+        case felhasznalo_tipus::admin :
+            break;
+
+        case felhasznalo_tipus::kereskedo :
+            break;
+        default:
+            break;
+        }
     }
 }
 
@@ -428,3 +442,11 @@ void Dialog::on_backButtonCarRegistered_clicked()
     ui->stackedWidget->setCurrentWidget(ui->registeredPage);
 }
 
+void Dialog::on_buyButtonCarRegistered_clicked()
+{
+    Adatbazis::getObjektum().autoVasarlas(ui->licenceValueCarRegistered->text().toStdString());
+
+    ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+    listRegistered(Tarolo::getObjektum().getAutok());
+//    ui->filerButtonRegistered->animateClick();
+}

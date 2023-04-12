@@ -4,6 +4,7 @@
 #include <list>
 #include <map>
 #include <iostream>
+#include <algorithm>
 
 #include "auto.h"
 #include "regisztraltfelhasznalo.h"
