@@ -104,6 +104,7 @@ void Dialog::showCarUnregisteredPage(Auto car)
     ui->radarCheckBoxCarUnregistered->setChecked(false);
 
     //set values
+    ui->licenceValueCarUnregistered->setText(QString::fromStdString(car.getRendszam()));
     ui->nameLabelCarUnregistered->setText(QString::fromStdString(car.getMarka() + " " + car.getTipus()));
     ui->yearValueLabelCarUnregistered->setText(QString::fromStdString(to_string(car.getEvjarat())));
     ui->fuelValueLabelCarUnregistered->setText(QString::fromStdString(car.getUzemanyag()));
