@@ -14,6 +14,7 @@
 #include "tarolo.h"
 #include "auto.h"
 #include "regisztraltfelhasznalo.h"
+#include "kereskedo.h"
 
 
 // adatbázis kapcsolatát, lekérdezéseket végzi
@@ -43,5 +44,6 @@ public:
     void fiokTorles(const string& felhasznalo_nev);
     void kereskedoHozzaadasa(const string& felhasznalo_nev, const string& jelszo,const string& teljes_nev, const string& telefonszam, const string& email);
     void autoBerlesbolVisszahozva(const string& rendszam, int elteltnapok);
+    pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> fiokokListazasa(const bool kereskedo, const bool felhasznalo);
 };
 #endif // ADATBAZIS_H

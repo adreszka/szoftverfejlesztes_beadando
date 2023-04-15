@@ -8,7 +8,6 @@ using namespace std;
 
 class RegisztraltFelhasznalo
 {
-    int felhasznalo_id;
     string teljes_nev;
     int szul_dat;
     string telefonszam;
@@ -17,11 +16,10 @@ class RegisztraltFelhasznalo
     int iranyitoszam;
     string felhasznalo_nev;
 public:
-    RegisztraltFelhasznalo(int felhasznalo_id, const string& _teljes_nev, const int _szul_dat,
+    RegisztraltFelhasznalo(const string& _teljes_nev, const int _szul_dat,
     const string& _telefonszam, const string& _email, bool _nem, int _iranyitoszam, const string& _felasznalo_nev);
     RegisztraltFelhasznalo();
     string getTeljes_nev() const;
-    int getFelhasznalo_id() const;
     int getSzul_dat() const;
     const string &getTelefonszam() const;
     const string &getEmail() const;

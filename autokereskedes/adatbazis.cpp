@@ -85,21 +85,20 @@ string Adatbazis::bejelentkezesEllenorzes(const string& felhasznalo_nev, const s
 
 void Adatbazis::felhasznaloBeolvas(const string& felhasznalo_nev)
 {
-    SACommand selectfelhasznalo(&dbcon,"SELECT f.Felhasznalo_Id, Teljes_nev, Szul_dat, Telefonszam, Email, Nem, Iranyitoszam, Felhasznalo_nev"
+    SACommand selectfelhasznalo(&dbcon,"SELECT Teljes_nev, Szul_dat, Telefonszam, Email, Nem, Iranyitoszam, Felhasznalo_nev"
                                 " FROM Felhasznalo f JOIN Bejelentkezesi_adatok b ON f.Felhasznalo_Id = b.Felhasznalo_Id"
                                 " WHERE felhasznalo_nev = :1");
     selectfelhasznalo << felhasznalo_nev.c_str();
     selectfelhasznalo.Execute();
     while (selectfelhasznalo.FetchNext()){
-        int felhasznalo_id = selectfelhasznalo[1].asLong();
-        string teljes_nev = (string)selectfelhasznalo[2].asString();
-        int szul_dat = selectfelhasznalo[3].asLong();
-        string telefonszam = (string)selectfelhasznalo[4].asString();
-        string email = (string)selectfelhasznalo[5].asString();
-        bool nem = selectfelhasznalo[6].asBool();
-        int iranyitoszam = selectfelhasznalo[7].asLong();
-        string felhasznalo_nev = (string)selectfelhasznalo[8].asString();
-        RegisztraltFelhasznalo f(felhasznalo_id, teljes_nev, szul_dat, telefonszam,
+        string teljes_nev = (string)selectfelhasznalo[1].asString();
+        int szul_dat = selectfelhasznalo[2].asLong();
+        string telefonszam = (string)selectfelhasznalo[3].asString();
+        string email = (string)selectfelhasznalo[4].asString();
+        bool nem = selectfelhasznalo[5].asBool();
+        int iranyitoszam = selectfelhasznalo[6].asLong();
+        string felhasznalo_nev = (string)selectfelhasznalo[7].asString();
+        RegisztraltFelhasznalo f(teljes_nev, szul_dat, telefonszam,
                       email, nem, iranyitoszam, felhasznalo_nev);
         Tarolo::getObjektum().setFelhasznalo(f);
     }
@@ -107,15 +106,21 @@ void Adatbazis::felhasznaloBeolvas(const string& felhasznalo_nev)
 
 void Adatbazis::autoVasarlas(const string& rendszam)
 {
+    int felhasznalo_id;
     auto t = std::time(nullptr);
     auto tm = *std::localtime(&t);
     std::ostringstream oss;
     oss << std::put_time(&tm, "%Y-%m-%d");
     auto str = oss.str();
-    int felhasznalo_id = Tarolo::getObjektum().getFelhasznalo().getFelhasznalo_id();
+    SACommand selectFelhasznalo_id(&dbcon, "SELECT Felhasznalo_Id FROM Bejelentkezesi_adatok WHERE Felhasznalo_nev LIKE :1");
     SACommand addTranzakcio(&dbcon,"INSERT INTO Tranzakcio(Rendszam, Datum, Szerep, Felhasznalo_Id) VALUES (:1, :2, 0, :3)");
     SACommand deleteAutoFelszereles(&dbcon, "DELETE FROM Felszereltseg_seged WHERE Rendszam = :1");
     SACommand deleteAuto(&dbcon, "DELETE FROM Auto WHERE Rendszam = :1");
+    selectFelhasznalo_id << Tarolo::getObjektum().getFelhasznalo().getFelhasznalo_nev().c_str();
+    selectFelhasznalo_id.Execute();
+    while(selectFelhasznalo_id.FetchNext()){
+        felhasznalo_id = selectFelhasznalo_id[1].asLong();
+    }
     addTranzakcio << rendszam.c_str();
     addTranzakcio << str.c_str();
     addTranzakcio << (long)felhasznalo_id;
@@ -351,3 +356,73 @@ void Adatbazis::autoBerlesbolVisszahozva(const string &rendszam, int elteltnapok
     updateAuto.Execute();
 }
 
+pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> Adatbazis::fiokokListazasa(const bool kereskedo, const bool felhasznalo)
+{
+    list<Kereskedo> kereskedoL;
+    list<RegisztraltFelhasznalo> felhasznaloL;
+    pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> lista;
+    if((kereskedo && felhasznalo) || (!kereskedo && !felhasznalo)){
+        SACommand felhasznalokLekerese(&dbcon, "SELECT Felhasznalo_nev, Teljes_nev, Szul_dat, Telefonszam, Email, Nem, Iranyitoszam, Hozzaferes "
+                          "FROM Bejelentkezesi_adatok b JOIN Felhasznalo f ON b.Felhasznalo_Id = f.Felhasznalo_Id ");
+        felhasznalokLekerese.Execute();
+        while (felhasznalokLekerese.FetchNext()){
+            if((string)felhasznalokLekerese[8].asString() == "kereskedo"){
+                string felhasznalo_nev = (string)felhasznalokLekerese[1].asString();
+                string teljes_nev = (string)felhasznalokLekerese[2].asString();
+                string telefonszam = (string)felhasznalokLekerese[4].asString();
+                string email = (string)felhasznalokLekerese[5].asString();
+                Kereskedo k(teljes_nev, telefonszam, email, felhasznalo_nev);
+                kereskedoL.push_back(k);
+            }else if((string)felhasznalokLekerese[8].asString() == "felhasznalo"){
+                string felhasznalo_nev = (string)felhasznalokLekerese[1].asString();
+                string teljes_nev = (string)felhasznalokLekerese[2].asString();
+                int szul_dat = felhasznalokLekerese[3].asLong();
+                string telefonszam = (string)felhasznalokLekerese[4].asString();
+                string email = (string)felhasznalokLekerese[5].asString();
+                bool nem = felhasznalokLekerese[6].asBool();
+                int iranyitoszam = felhasznalokLekerese[7].asLong();
+                RegisztraltFelhasznalo rf(teljes_nev, szul_dat, telefonszam, email, nem, iranyitoszam, felhasznalo_nev);
+                felhasznaloL.push_back(rf);
+            }
+        }
+        lista.first = kereskedoL;
+        lista.second = felhasznaloL;
+    }
+    else if(kereskedo && !felhasznalo){
+        SACommand felhasznalokLekerese(&dbcon, "SELECT Felhasznalo_nev, Teljes_nev, Telefonszam, Email, Hozzaferes "
+                          "FROM Bejelentkezesi_adatok b JOIN Felhasznalo f ON b.Felhasznalo_Id = f.Felhasznalo_Id ");
+        felhasznalokLekerese.Execute();
+        while (felhasznalokLekerese.FetchNext()){
+            if((string)felhasznalokLekerese[8].asString() == "kereskedo"){
+            string felhasznalo_nev = (string)felhasznalokLekerese[1].asString();
+            string teljes_nev = (string)felhasznalokLekerese[2].asString();
+            string telefonszam = (string)felhasznalokLekerese[3].asString();
+            string email = (string)felhasznalokLekerese[4].asString();
+            Kereskedo k(teljes_nev, telefonszam, email, felhasznalo_nev);
+            kereskedoL.push_back(k);
+            }
+        }
+        lista.first = kereskedoL;
+    }
+    else if(!kereskedo && felhasznalo){
+        SACommand felhasznalokLekerese(&dbcon, "SELECT Felhasznalo_nev, Teljes_nev, Szul_dat, Telefonszam, Email, Nem, Iranyitoszam, Hozzaferes "
+                          "FROM Bejelentkezesi_adatok b JOIN Felhasznalo f ON b.Felhasznalo_Id = f.Felhasznalo_Id ");
+        felhasznalokLekerese.Execute();
+        while (felhasznalokLekerese.FetchNext()){
+            if((string)felhasznalokLekerese[8].asString() == "felhasznalo"){
+                string felhasznalo_nev = (string)felhasznalokLekerese[1].asString();
+                string teljes_nev = (string)felhasznalokLekerese[2].asString();
+                int szul_dat = felhasznalokLekerese[3].asLong();
+                string telefonszam = (string)felhasznalokLekerese[4].asString();
+                string email = (string)felhasznalokLekerese[5].asString();
+                bool nem = felhasznalokLekerese[6].asBool();
+                int iranyitoszam = felhasznalokLekerese[7].asLong();
+                RegisztraltFelhasznalo rf(teljes_nev, szul_dat, telefonszam, email, nem, iranyitoszam, felhasznalo_nev);
+                felhasznaloL.push_back(rf);
+            }
+        }
+        lista.first = kereskedoL;
+        lista.second = felhasznaloL;
+    }
+    return lista;
+}

@@ -5,11 +5,6 @@ string RegisztraltFelhasznalo::getTeljes_nev() const
     return teljes_nev;
 }
 
-int RegisztraltFelhasznalo::getFelhasznalo_id() const
-{
-    return felhasznalo_id;
-}
-
 int RegisztraltFelhasznalo::getSzul_dat() const
 {
     return szul_dat;
@@ -40,9 +35,8 @@ const string &RegisztraltFelhasznalo::getFelhasznalo_nev() const
     return felhasznalo_nev;
 }
 
-RegisztraltFelhasznalo::RegisztraltFelhasznalo(int _felhasznalo_id, const string& _teljes_nev, const int _szul_dat,
+RegisztraltFelhasznalo::RegisztraltFelhasznalo(const string& _teljes_nev, const int _szul_dat,
                          const string& _telefonszam, const string& _email, bool _nem, int _iranyitoszam, const string &_felhasznalo_nev):
-    felhasznalo_id(_felhasznalo_id),
     teljes_nev(_teljes_nev),
     szul_dat(_szul_dat),
     telefonszam(_telefonszam),
