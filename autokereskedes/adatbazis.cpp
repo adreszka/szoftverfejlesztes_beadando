@@ -306,3 +306,25 @@ void Adatbazis::fiokTorles(const string &felhasznalo_nev)
     deleteFelhasznaloBejelentkezesiAdatok << (long)felhaszn_id;
     deleteFelhasznaloBejelentkezesiAdatok.Execute();
 }
+
+void Adatbazis::kereskedoHozzaadasa(const string &felhasznalo_nev, const string &jelszo,const string &teljes_nev, const string &telefonszam, const string &email)
+{
+    int felhasznalo_id;
+    SACommand insertBejelentkezesiAdatok(&dbcon, "INSERT INTO Bejelentkezesi_adatok (Felhasznalo_nev, Jelszo, Hozzaferes) VALUES (:1, :2, 'kereskedo')");
+    insertBejelentkezesiAdatok << felhasznalo_nev.c_str();
+    insertBejelentkezesiAdatok << jelszo.c_str();
+    insertBejelentkezesiAdatok.Execute();
+    SACommand selectFelhasznalo_id(&dbcon, "SELECT Felhasznalo_Id FROM Bejelentkezesi_adatok WHERE Felhasznalo_nev LIKE :1");
+    selectFelhasznalo_id << felhasznalo_nev.c_str();
+    selectFelhasznalo_id.Execute();
+    while (selectFelhasznalo_id.FetchNext()){
+        felhasznalo_id = selectFelhasznalo_id[1].asLong();
+    }
+    SACommand insertFelhasznalo(&dbcon, "INSERT INTO Felhasznalo (Felhasznalo_Id ,Teljes_nev, Telefonszam, Email) VALUES (:1, :2, :3, :4)");
+    insertFelhasznalo << (long)felhasznalo_id;
+    insertFelhasznalo << teljes_nev.c_str();
+    insertFelhasznalo << telefonszam.c_str();
+    insertFelhasznalo << email.c_str();
+    insertFelhasznalo.Execute();
+}
+

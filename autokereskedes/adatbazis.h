@@ -41,5 +41,6 @@ public:
                               const string& marka, const string& kialakitas, list<string> felszerelesek);
     void autoTorles(const string& rendszam);
     void fiokTorles(const string& felhasznalo_nev);
+    void kereskedoHozzaadasa(const string& felhasznalo_nev, const string& jelszo,const string& teljes_nev, const string& telefonszam, const string& email);
 };
 #endif // ADATBAZIS_H
