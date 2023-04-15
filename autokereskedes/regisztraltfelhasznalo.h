@@ -15,12 +15,17 @@ class RegisztraltFelhasznalo
     string email;
     bool nem;                //0 férfi 1 nő
     int iranyitoszam;
-    public:
+public:
     RegisztraltFelhasznalo(int felhasznalo_id, const string& _teljes_nev, const int _szul_dat,
     const string& _telefonszam, const string& _email, bool _nem, int _iranyitoszam);
     RegisztraltFelhasznalo();
     string getTeljes_nev() const;
     int getFelhasznalo_id() const;
+    int getSzul_dat() const;
+    const string &getTelefonszam() const;
+    const string &getEmail() const;
+    bool getNem() const;
+    int getIranyitoszam() const;
 };
 
 #endif // REGISZTRALT_FELHASZNALO_H

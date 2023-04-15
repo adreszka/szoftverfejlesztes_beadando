@@ -26,7 +26,7 @@
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="unregisteredPage">
     <property name="styleSheet">
@@ -169,6 +169,9 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="typeLabelUnregistered">
       <property name="geometry">
@@ -195,6 +198,9 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="priceLabelUnregistered">
       <property name="geometry">
@@ -220,6 +226,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="maximum">
        <number>100000000</number>
@@ -249,6 +258,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="maximum">
        <number>100000000</number>
@@ -343,6 +355,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="maximum">
        <number>1000000</number>
       </property>
@@ -355,6 +370,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="maximum">
        <number>1000000</number>
@@ -571,6 +589,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="maximum">
        <number>2023</number>
       </property>
@@ -583,6 +604,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="maximum">
        <number>2023</number>
@@ -834,6 +858,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="maximum">
        <number>2000</number>
       </property>
@@ -846,6 +873,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="maximum">
        <number>2000</number>
@@ -908,6 +938,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
       <property name="maximum">
        <number>20000</number>
       </property>
@@ -920,6 +953,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="maximum">
        <number>20000</number>
@@ -1267,6 +1303,9 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="typeLabelRegistered">
       <property name="geometry">
@@ -1292,6 +1331,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="priceLabelRegistered">
@@ -1319,6 +1361,9 @@ color: rgb(0, 0, 0);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="fromPriceLabelRegistered">
       <property name="geometry">
@@ -1344,6 +1389,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="toPriceLabelRegistered">
@@ -1387,6 +1435,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QSpinBox" name="toRentSpinBoxRegistered">
       <property name="geometry">
@@ -1396,6 +1447,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="rentLabelRegistered">
@@ -1609,6 +1663,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QSpinBox" name="fromYearSpinBoxRegistered">
       <property name="geometry">
@@ -1618,6 +1675,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="yearLabelRegistered">
@@ -1770,6 +1830,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QSpinBox" name="toPowerSpinBoxRegistered">
       <property name="geometry">
@@ -1779,6 +1842,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="toPowerLabelRegistered">
@@ -1822,6 +1888,9 @@ color: rgb(0, 0, 0);</string>
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QSpinBox" name="fromSizeSpinBoxRegistered">
       <property name="geometry">
@@ -1831,6 +1900,9 @@ color: rgb(0, 0, 0);</string>
         <width>121</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="fromSizeLabelRegistered">
@@ -2314,7 +2386,7 @@ color: rgb(0, 0, 0);</string>
       <string notr="true">background-color: rgb(0, 0, 127);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="loginPage">
       <widget class="QPushButton" name="registrationButtonLogin">
@@ -4088,14 +4160,50 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>180</y>
+       <y>140</y>
        <width>621</width>
-       <height>511</height>
+       <height>591</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(0, 0, 127);</string>
      </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="adminPage">
+    <widget class="QWidget" name="headerAdmin" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>800</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <widget class="QLabel" name="headerLabelAdmin">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>351</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>35</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Autókereskedés</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

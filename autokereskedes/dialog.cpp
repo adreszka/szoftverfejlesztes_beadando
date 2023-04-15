@@ -28,7 +28,6 @@ Dialog::Dialog(QWidget *parent)
 
     //unregistered comboBox
     ui->brandComboBoxUnregistered->addItem("Válasszon");
-    ui->typeComboBoxUnregistered->addItem("Válasszon");
 
     map<string, list<string>> brandsUnregisterered = Tarolo::getObjektum().getMarkak();
     for(auto i : brandsUnregisterered)
@@ -38,7 +37,6 @@ Dialog::Dialog(QWidget *parent)
 
     //registered comboBox
     ui->brandComboBoxRegistered->addItem("Válasszon");
-    ui->typeComboBoxRegistered->addItem("Válasszon");
 
     map<string, list<string>> brandsRegistered = Tarolo::getObjektum().getMarkak();
     for(auto i : brandsRegistered)

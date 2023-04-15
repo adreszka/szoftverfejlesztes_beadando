@@ -10,6 +10,31 @@ int RegisztraltFelhasznalo::getFelhasznalo_id() const
     return felhasznalo_id;
 }
 
+int RegisztraltFelhasznalo::getSzul_dat() const
+{
+    return szul_dat;
+}
+
+const string &RegisztraltFelhasznalo::getTelefonszam() const
+{
+    return telefonszam;
+}
+
+const string &RegisztraltFelhasznalo::getEmail() const
+{
+    return email;
+}
+
+bool RegisztraltFelhasznalo::getNem() const
+{
+    return nem;
+}
+
+int RegisztraltFelhasznalo::getIranyitoszam() const
+{
+    return iranyitoszam;
+}
+
 RegisztraltFelhasznalo::RegisztraltFelhasznalo(int _felhasznalo_id, const string& _teljes_nev, const int _szul_dat,
                          const string& _telefonszam, const string& _email, bool _nem, int _iranyitoszam):
     felhasznalo_id(_felhasznalo_id),
