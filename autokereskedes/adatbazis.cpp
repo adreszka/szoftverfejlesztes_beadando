@@ -329,3 +329,25 @@ void Adatbazis::kereskedoHozzaadasa(const string &felhasznalo_nev, const string 
     insertFelhasznalo.Execute();
 }
 
+void Adatbazis::autoBerlesbolVisszahozva(const string &rendszam, int elteltnapok)
+{
+    int napidij = 0, kolcsdij = 0;
+    SACommand selectAuto(&dbcon, "SELECT * FROM Auto WHERE Rendszam = :1");
+    SACommand updateAuto(&dbcon, "UPDATE Auto SET Raktaron = 1 WHERE Rendszam = :1");
+    SACommand updateKolcsonzottAuto(&dbcon, "UPDATE Kolcsonzes SET elteltnapok = :2, Kolcsdij = :3 "
+                                            "WHERE Rendszam = :1 AND elteltnapok ISNULL");
+    selectAuto << rendszam.c_str();
+    selectAuto.Execute();
+    while (selectAuto.FetchNext())
+    {
+        napidij = selectAuto[3].asLong();
+    }
+    kolcsdij = elteltnapok * napidij;
+    updateKolcsonzottAuto << rendszam.c_str();
+    updateKolcsonzottAuto << (long)elteltnapok;
+    updateKolcsonzottAuto << (long)kolcsdij;
+    updateKolcsonzottAuto.Execute();
+    updateAuto << rendszam.c_str();
+    updateAuto.Execute();
+}
+

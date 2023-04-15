@@ -42,5 +42,6 @@ public:
     void autoTorles(const string& rendszam);
     void fiokTorles(const string& felhasznalo_nev);
     void kereskedoHozzaadasa(const string& felhasznalo_nev, const string& jelszo,const string& teljes_nev, const string& telefonszam, const string& email);
+    void autoBerlesbolVisszahozva(const string& rendszam, int elteltnapok);
 };
 #endif // ADATBAZIS_H
