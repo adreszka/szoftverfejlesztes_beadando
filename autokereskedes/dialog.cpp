@@ -88,6 +88,7 @@ Dialog::~Dialog()
     delete ui;
 }
 
+
 //unregistered page
 void Dialog::showCarUnregisteredPage(Auto car)
 {
@@ -232,6 +233,7 @@ void Dialog::on_brandComboBoxUnregistered_currentIndexChanged(int index)
     }
 }
 
+
 //registered page
 void Dialog::showCarRegisteredPage(Auto car)
 {
@@ -375,11 +377,13 @@ void Dialog::on_brandComboBoxRegistered_currentIndexChanged(int index)
     }
 }
 
+
 //authentication page
 void Dialog::on_backButtonAuthentication_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->unregisteredPage);
 }
+
 
 //login page
 void Dialog::on_registrationButtonLogin_clicked()
@@ -400,6 +404,8 @@ void Dialog::on_loginButtonLogin_clicked()
             break;
 
         case felhasznalo_tipus::admin :
+            ui->stackedWidget->setCurrentWidget(ui->adminPage);
+            ui->stackedWidgetAdmin->setCurrentWidget(ui->profileListPageAdmin);
             break;
 
         case felhasznalo_tipus::kereskedo :
@@ -409,6 +415,7 @@ void Dialog::on_loginButtonLogin_clicked()
         }
     }
 }
+
 
 //registration page
 void Dialog::on_registrationButtonRegistration_clicked()
@@ -421,11 +428,11 @@ void Dialog::on_registrationButtonRegistration_clicked()
     }
 }
 
-
 void Dialog::on_loginButtonRegistration_clicked()
 {
     ui->stackedWidgetAuthentication->setCurrentWidget(ui->loginPage);
 }
+
 
 //unregispered car page
 
@@ -433,6 +440,7 @@ void Dialog::on_backButtonCarUnregistered_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->unregisteredPage);
 }
+
 
 //registered car page
 
@@ -447,4 +455,108 @@ void Dialog::on_buyButtonCarRegistered_clicked()
 
     ui->stackedWidget->setCurrentWidget(ui->registeredPage);
     ui->filerButtonRegistered->animateClick();
+}
+
+
+//admin page
+void Dialog::showSalesmanAdmin(Kereskedo salesman)
+{
+    ui->stackedWidget->setCurrentWidget(ui->carRegisteredPage);
+}
+
+void Dialog::showUserAdmin(RegisztraltFelhasznalo user)
+{
+    ui->stackedWidget->setCurrentWidget(ui->carRegisteredPage);
+}
+
+void Dialog::listAdmin(pair<list<Kereskedo>, list<RegisztraltFelhasznalo>> lists)
+{
+    //delete records
+    for(auto i : itemListAdmin)
+    {
+        i.second.second->deleteLater();
+
+        i.second.first->deleteLater();
+        i.first->deleteLater();
+    }
+    itemListRegistered.clear();
+
+    //add records
+    for(auto salesman : lists.first)
+    {
+        QHBoxLayout *record = new QHBoxLayout();
+        itemContainerAdmin->addLayout(record);
+        itemListAdmin.insert(pair<QHBoxLayout*, pair<QPushButton*, QLabel*>>(record, pair<QPushButton*, QLabel*>()));
+
+        QPushButton *button = new QPushButton();
+        button->setText(QString::fromStdString(salesman.getFelhasznalo_nev()));
+        connect(button, &QPushButton::clicked, [=]{showSalesmanAdmin(salesman);});
+        record->addWidget(button);
+
+        QLabel *type = new QLabel();
+        type->setText(QString::fromStdString("Kereskedő"));
+        record->addWidget(type);
+        itemListAdmin[record] = pair<QPushButton*, QLabel*>(button, type);
+
+    }
+
+    for(auto user : lists.second)
+    {
+        QHBoxLayout *record = new QHBoxLayout();
+        itemContainerAdmin->addLayout(record);
+        itemListAdmin.insert(pair<QHBoxLayout*, pair<QPushButton*, QLabel*>>(record, pair<QPushButton*, QLabel*>()));
+
+        QPushButton *button = new QPushButton();
+        button->setText(QString::fromStdString(user.getFelhasznalo_nev()));
+        connect(button, &QPushButton::clicked, [=]{showUserAdmin(user);});
+        record->addWidget(button);
+
+        QLabel *type = new QLabel();
+        type->setText(QString::fromStdString("Felhasználó"));
+        record->addWidget(type);
+        itemListAdmin[record] = pair<QPushButton*, QLabel*>(button, type);
+    }
+}
+
+void Dialog::on_salesmanButtonListAdmin_clicked()
+{
+    ui->stackedWidgetAdmin->setCurrentWidget(ui->salesmanPageAdmin);
+}
+
+
+void Dialog::on_listButtonSalesmanAdmin_clicked()
+{
+    ui->stackedWidgetAdmin->setCurrentWidget(ui->profileListPageAdmin);
+}
+
+
+void Dialog::on_salesmanCheckBoxAdmin_stateChanged(int arg1)
+{
+
+}
+
+
+void Dialog::on_buyerCheckBoxAdmin_stateChanged(int arg1)
+{
+
+}
+
+
+void Dialog::on_salesmanRegistrationButtonAdmin_clicked()
+{
+    Adatbazis::getObjektum().kereskedoHozzaadasa(
+        ui->usernameFieldAdmin->text().toStdString(),
+        ui->passwordFieldAdmin->text().toStdString(),
+        ui->nameFieldAdmin->text().toStdString(),
+        ui->phoneFieldAdmin->text().toStdString(),
+        ui->emailFieldAdmin->text().toStdString()
+    );
+
+    QMessageBox::information(this, "", "A kereskedő regisztrálása sikeres volt!");
+
+    ui->usernameFieldAdmin->setText("");
+    ui->passwordFieldAdmin->setText("");
+    ui->nameFieldAdmin->setText("");
+    ui->phoneFieldAdmin->setText("");
+    ui->emailFieldAdmin->setText("");
 }

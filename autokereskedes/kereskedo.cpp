@@ -20,13 +20,19 @@ const string &Kereskedo::getEmail() const
     return email;
 }
 
+const string &Kereskedo::getFelhasznalo_nev() const
+{
+    return felhasznalo_nev;
+}
+
 Kereskedo::Kereskedo()
 {
 
 }
 
-Kereskedo::Kereskedo(int felhasznalo_id, const string &teljes_nev, const string &telefonszam, const string &email) : felhasznalo_id(felhasznalo_id),
+Kereskedo::Kereskedo(int felhasznalo_id, const string &teljes_nev, const string &telefonszam, const string &email, const string &felhasnalo_nev) : felhasznalo_id(felhasznalo_id),
     teljes_nev(teljes_nev),
     telefonszam(telefonszam),
-    email(email)
+    email(email),
+    felhasznalo_nev(felhasnalo_nev)
 {}

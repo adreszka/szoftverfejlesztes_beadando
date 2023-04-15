@@ -35,15 +35,21 @@ int RegisztraltFelhasznalo::getIranyitoszam() const
     return iranyitoszam;
 }
 
+const string &RegisztraltFelhasznalo::getFelhasznalo_nev() const
+{
+    return felhasznalo_nev;
+}
+
 RegisztraltFelhasznalo::RegisztraltFelhasznalo(int _felhasznalo_id, const string& _teljes_nev, const int _szul_dat,
-                         const string& _telefonszam, const string& _email, bool _nem, int _iranyitoszam):
+                         const string& _telefonszam, const string& _email, bool _nem, int _iranyitoszam, const string &_felhasznalo_nev):
     felhasznalo_id(_felhasznalo_id),
     teljes_nev(_teljes_nev),
     szul_dat(_szul_dat),
     telefonszam(_telefonszam),
     email(_email),
     nem(_nem),
-    iranyitoszam(_iranyitoszam)
+    iranyitoszam(_iranyitoszam),
+    felhasznalo_nev(_felhasznalo_nev)
 {
 
 }

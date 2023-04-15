@@ -13,6 +13,8 @@
 #include "tarolo.h"
 #include "rendszerfuggvenyek.h"
 #include "autentikacio.h"
+#include "kereskedo.h"
+#include "regisztraltfelhasznalo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
@@ -61,12 +63,29 @@ private slots:
 
     void on_buyButtonCarRegistered_clicked();
 
+    void on_salesmanButtonListAdmin_clicked();
+
+    void on_listButtonSalesmanAdmin_clicked();
+
+    void on_salesmanCheckBoxAdmin_stateChanged(int arg1);
+
+    void on_buyerCheckBoxAdmin_stateChanged(int arg1);
+
+    void on_salesmanRegistrationButtonAdmin_clicked();
+
+    void listAdmin(pair<list<Kereskedo>, list<RegisztraltFelhasznalo>>);
+
+    void showSalesmanAdmin(Kereskedo salesman);
+
+    void showUserAdmin(RegisztraltFelhasznalo user);
+
 private:
     Ui::Dialog *ui;
 
     //container of the listed items
     map<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>> itemListUnregistered;
     map<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>> itemListRegistered;
+    map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListAdmin;
 
     //unregistered listed cars
     QWidget *itemsUnregistered = new QWidget();
@@ -75,5 +94,9 @@ private:
     //registered listed cars
     QWidget *itemsRegistered = new QWidget();
     QVBoxLayout *itemContainerRegistered = new QVBoxLayout(itemsRegistered);
+
+    //admin list
+    QWidget *itemsAdmin = new QWidget();
+    QVBoxLayout *itemContainerAdmin = new QVBoxLayout(itemsAdmin);
 };
 #endif // DIALOG_H

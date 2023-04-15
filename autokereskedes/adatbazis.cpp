@@ -98,8 +98,9 @@ void Adatbazis::felhasznaloBeolvas(const string& felhasznalo_nev)
         string email = (string)selectfelhasznalo[5].asString();
         bool nem = selectfelhasznalo[6].asBool();
         int iranyitoszam = selectfelhasznalo[7].asLong();
+        string felhasznalo_nev = (string)selectfelhasznalo[8].asString();
         RegisztraltFelhasznalo f(felhasznalo_id, teljes_nev, szul_dat, telefonszam,
-                      email, nem, iranyitoszam);
+                      email, nem, iranyitoszam, felhasznalo_nev);
         Tarolo::getObjektum().setFelhasznalo(f);
     }
 }

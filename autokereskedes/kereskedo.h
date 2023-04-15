@@ -12,13 +12,15 @@ class Kereskedo
     string teljes_nev;
     string telefonszam;
     string email;
+    string felhasznalo_nev;
 public:
     Kereskedo();
-    Kereskedo(int felhasznalo_id, const string &teljes_nev, const string &telefonszam, const string &email);
+    Kereskedo(int felhasznalo_id, const string &teljes_nev, const string &telefonszam, const string &email, const string &felhasznalo_nev);
     int getFelhasznalo_id() const;
     const string &getTeljes_nev() const;
     const string &getTelefonszam() const;
     const string &getEmail() const;
+    const string &getFelhasznalo_nev() const;
 };
 
 #endif // KERESKEDO_H
