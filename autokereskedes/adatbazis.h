@@ -28,7 +28,6 @@ public:
     static Adatbazis& getObjektum();
 
     void csatlakozas (const string& sqlite_fajl);
-    void teszt ();
     void autokBeolvas();
     string bejelentkezesEllenorzes(const string& felhasznalo_nev, const string& jelszo);
     void felhasznaloBeolvas(const string& felhasznalo_nev);

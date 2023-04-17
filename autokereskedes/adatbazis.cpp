@@ -15,16 +15,6 @@ void Adatbazis::csatlakozas(const string &fajl)
     cout << "Sikeres csatlakozas!" << endl;
 }
 
-void Adatbazis::teszt()
-{
-    SACommand szamol(&dbcon,"SELECT count(Rendszam) FROM Auto");
-    szamol.Execute();
-    szamol.FetchNext();
-    int cnt = szamol[1].asLong();
-    cout << "Rekordok szama: " << cnt << endl;
-    cout << "Jo munkat!" << endl << endl;
-}
-
 void Adatbazis::autokBeolvas()
 {
     SACommand selectauto(&dbcon,"SELECT a.Rendszam, Ar, Napidij, Szin, Csomagtarto_merete, Uzemanyag, Evjarat, Motor_teljesitmenye, Hengerurtartalom, Sebessegvalto, Hajtas, m.Marka_nev, t.Tipus_nev, Raktaron, k.Kialakitas_nev"
