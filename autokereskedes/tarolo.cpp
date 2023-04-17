@@ -32,6 +32,28 @@ void Tarolo::torolAuto(const string &rendszam)
     });
 }
 
+void Tarolo::raktarbolKivetel(const string &rendszam)
+{
+    for(auto i = autok.begin(); i != autok.end(); ++i)
+    {
+        if(i->getRendszam() == rendszam) {
+            i->setRaktaron(false);
+            break;
+        }
+    }
+}
+
+void Tarolo::raktarbaBevitel(const string &rendszam)
+{
+    for(auto i = autok.begin(); i != autok.end(); ++i)
+    {
+        if(i->getRendszam() == rendszam) {
+            i->setRaktaron(true);
+            break;
+        }
+    }
+}
+
 Tarolo &Tarolo::getObjektum()
 {
     static Tarolo tarolo;

@@ -189,6 +189,8 @@ void Adatbazis::autoBerles(const string &rendszam, const string &felhasznalo_nev
     addKolcsonzes << rendszam.c_str();
     addKolcsonzes << (long)felhasznalo_id;
     addKolcsonzes.Execute();
+
+    Tarolo::getObjektum().raktarbolKivetel(rendszam);
 }
 
 void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,

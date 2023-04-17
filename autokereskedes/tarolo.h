@@ -28,6 +28,8 @@ public:
     map<string, list<string>> getMarkak() const;
     void setMarkak(const map<string, list<string> > &newMarkak);
     void torolAuto(const string& rendszam);
+    void raktarbolKivetel(const string &rendszam);
+    void raktarbaBevitel(const string &rendszam);
 };
 
 #endif // TAROLO_H

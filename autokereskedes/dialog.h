@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include <QSignalMapper>
+#include <QInputDialog>
 #include <list>
 #include <map>
 
@@ -87,6 +88,26 @@ private slots:
 
     void on_deleteButtonUserProfileAdmin_clicked();
 
+    void on_rentButtonCarRegistered_clicked();
+
+    void on_backButtonProfile_clicked();
+
+    void listWarehouse(list<Auto> list);
+
+    void listRented(list<Auto> list);
+
+    void showWarehouse(Auto car);
+
+    void showRented(Auto car);
+
+    void on_backButtonWarehouse_clicked();
+
+    void on_deleteButtonWarehouse_clicked();
+
+    void on_backButtonRented_clicked();
+
+    void on_placeBackButtonRented_clicked();
+
 private:
     Ui::Dialog *ui;
 
@@ -94,6 +115,8 @@ private:
     map<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>> itemListUnregistered;
     map<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>> itemListRegistered;
     map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListAdmin;
+    map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListWarehouse;
+    map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListRented;
 
     //unregistered listed cars
     QWidget *itemsUnregistered = new QWidget();
@@ -106,5 +129,13 @@ private:
     //admin list
     QWidget *itemsAdmin = new QWidget();
     QVBoxLayout *itemContainerAdmin = new QVBoxLayout(itemsAdmin);
+
+    //salesman warehouse list
+    QWidget *itemsWarehouse = new QWidget();
+    QVBoxLayout *itemContainerWarehouse = new QVBoxLayout(itemsWarehouse);
+
+    //salesman rented list
+    QWidget *itemsRented = new QWidget();
+    QVBoxLayout *itemContainerRented = new QVBoxLayout(itemsRented);
 };
 #endif // DIALOG_H

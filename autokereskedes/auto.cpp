@@ -83,6 +83,11 @@ string Auto::getKialakitas() const
     return kialakitas;
 }
 
+void Auto::setRaktaron(bool newRaktaron)
+{
+    raktaron = newRaktaron;
+}
+
 Auto::Auto(const string& _rendszam, int _ar, int _napidij, const string& _szin, int _csomagtarto_meret,
             const string& _uzemanyag, int _evjarat, int _motor_teljesitmeny, int _hengerutartalom,
             const string& _sebessegvalto, const string& _hajtas,

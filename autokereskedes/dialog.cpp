@@ -7,6 +7,12 @@ Dialog::Dialog(QWidget *parent)
 {
     ui->setupUi(this);
 
+    //button hide
+    ui->bidButtonRegisteredPurchase->hide();
+    ui->bidButtonUnregisteredPurchase->hide();
+    ui->purchaseLabelRegisteredPurchase->hide();
+    ui->purchaseLabelUnregisteredPurchase->hide();
+
     //window settings
     setWindowTitle("Autó kereskedés");
     setWindowIcon(QIcon(":kepek/appIcon.png"));
@@ -86,6 +92,13 @@ Dialog::Dialog(QWidget *parent)
     ui->profileListAdmin->setWidget(itemsAdmin);
 
     listAdmin(Adatbazis::getObjektum().fiokokListazasa(true, true));
+
+    //salesman page
+    ui->warehouseListSalesman->setWidget(itemsWarehouse);
+    ui->rentedListSalesman->setWidget(itemsRented);
+
+    listWarehouse(Tarolo::getObjektum().getAutok());
+    listRented(Tarolo::getObjektum().getAutok());
 }
 
 Dialog::~Dialog()
@@ -156,25 +169,28 @@ void Dialog::listUnregistered(list<Auto> cars)
     //add records
     for(auto i : cars)
     {
-        QHBoxLayout *record = new QHBoxLayout();
-        itemContainerUnregistered->addLayout(record);
-        itemListUnregistered.insert(pair<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>>(record, pair<QPushButton*, list<QLabel*>>()));
+        if(i.getRaktaron())
+        {
+            QHBoxLayout *record = new QHBoxLayout();
+            itemContainerUnregistered->addLayout(record);
+            itemListUnregistered.insert(pair<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>>(record, pair<QPushButton*, list<QLabel*>>()));
 
-        QPushButton *button = new QPushButton();
-        button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
-        connect(button, &QPushButton::clicked, [=]{showCarUnregisteredPage(i);});
-        record->addWidget(button);
-        itemListUnregistered[record] = pair<QPushButton*, list<QLabel*>>(button, list<QLabel*>());
+            QPushButton *button = new QPushButton();
+            button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
+            connect(button, &QPushButton::clicked, [=]{showCarUnregisteredPage(i);});
+            record->addWidget(button);
+            itemListUnregistered[record] = pair<QPushButton*, list<QLabel*>>(button, list<QLabel*>());
 
-        QLabel *price = new QLabel();
-        price->setText(QString::fromStdString(to_string(i.getAr())));
-        record->addWidget(price);
-        itemListUnregistered[record].second.push_back(price);
+            QLabel *price = new QLabel();
+            price->setText(QString::fromStdString(to_string(i.getAr())));
+            record->addWidget(price);
+            itemListUnregistered[record].second.push_back(price);
 
-        QLabel *rentPrice = new QLabel();
-        rentPrice->setText(QString::fromStdString(to_string(i.getNapidij())));
-        record->addWidget(rentPrice);
-        itemListUnregistered[record].second.push_back(rentPrice);
+            QLabel *rentPrice = new QLabel();
+            rentPrice->setText(QString::fromStdString(to_string(i.getNapidij())));
+            record->addWidget(rentPrice);
+            itemListUnregistered[record].second.push_back(rentPrice);
+        }
     }
 }
 
@@ -301,31 +317,48 @@ void Dialog::listRegistered(list<Auto> cars)
     //add records
     for(auto i : cars)
     {
-        QHBoxLayout *record = new QHBoxLayout();
-        itemContainerRegistered->addLayout(record);
-        itemListRegistered.insert(pair<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>>(record, pair<QPushButton*, list<QLabel*>>()));
+        if(i.getRaktaron())
+        {
+            QHBoxLayout *record = new QHBoxLayout();
+            itemContainerRegistered->addLayout(record);
+            itemListRegistered.insert(pair<QHBoxLayout*, pair<QPushButton*, list<QLabel*>>>(record, pair<QPushButton*, list<QLabel*>>()));
 
-        QPushButton *button = new QPushButton();
-        button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
-        connect(button, &QPushButton::clicked, [=]{showCarRegisteredPage(i);});
-        record->addWidget(button);
-        itemListRegistered[record] = pair<QPushButton*, list<QLabel*>>(button, list<QLabel*>());
+            QPushButton *button = new QPushButton();
+            button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
+            connect(button, &QPushButton::clicked, [=]{showCarRegisteredPage(i);});
+            record->addWidget(button);
+            itemListRegistered[record] = pair<QPushButton*, list<QLabel*>>(button, list<QLabel*>());
 
-        QLabel *price = new QLabel();
-        price->setText(QString::fromStdString(to_string(i.getAr())));
-        record->addWidget(price);
-        itemListRegistered[record].second.push_back(price);
+            QLabel *price = new QLabel();
+            price->setText(QString::fromStdString(to_string(i.getAr())));
+            record->addWidget(price);
+            itemListRegistered[record].second.push_back(price);
 
-        QLabel *rentPrice = new QLabel();
-        rentPrice->setText(QString::fromStdString(to_string(i.getNapidij())));
-        record->addWidget(rentPrice);
-        itemListRegistered[record].second.push_back(rentPrice);
+            QLabel *rentPrice = new QLabel();
+            rentPrice->setText(QString::fromStdString(to_string(i.getNapidij())));
+            record->addWidget(rentPrice);
+            itemListRegistered[record].second.push_back(rentPrice);
+        }
     }
 }
 
 void Dialog::on_profileButtonRegistered_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->profilePage);
+
+    //get values
+    ui->usernameValueLabelProfile->setText(QString::fromStdString(Tarolo::getObjektum().getFelhasznalo().getFelhasznalo_nev()));
+    ui->nameValueLabelProfile->setText(QString::fromStdString(Tarolo::getObjektum().getFelhasznalo().getTeljes_nev()));
+    ui->emailValueLabelProfile->setText(QString::fromStdString(Tarolo::getObjektum().getFelhasznalo().getEmail()));
+    ui->phoneValueLabelProfile->setText(QString::fromStdString(Tarolo::getObjektum().getFelhasznalo().getTelefonszam()));
+    ui->birthValueLabelProfile->setText(QString::fromStdString(to_string(Tarolo::getObjektum().getFelhasznalo().getSzul_dat())));
+    if(Tarolo::getObjektum().getFelhasznalo().getNem())
+    {
+        ui->genderValueLabelProfile->setText("férfi");
+    }else{
+        ui->genderValueLabelProfile->setText("nő");
+    }
+    ui->postcodeValueLabelProfile->setText(QString::fromStdString(to_string(Tarolo::getObjektum().getFelhasznalo().getIranyitoszam())));
 }
 
 void Dialog::on_filerButtonRegistered_clicked()
@@ -414,6 +447,7 @@ void Dialog::on_loginButtonLogin_clicked()
             break;
 
         case felhasznalo_tipus::kereskedo :
+            ui->stackedWidget->setCurrentWidget(ui->salemanPage);
             break;
         default:
             break;
@@ -458,6 +492,17 @@ void Dialog::on_buyButtonCarRegistered_clicked()
 
     ui->stackedWidget->setCurrentWidget(ui->registeredPage);
     ui->filerButtonRegistered->animateClick();
+}
+
+void Dialog::on_rentButtonCarRegistered_clicked()
+{
+    Adatbazis::getObjektum().autoBerles(ui->licenceValueCarRegistered->text().toStdString(), Tarolo::getObjektum().getFelhasznalo().getFelhasznalo_nev());
+
+    QMessageBox::information(this, "Bérlés:", "A bérlés sikeresen megtörtént!");
+
+    listRegistered(Tarolo::getObjektum().getAutok());
+
+    ui->stackedWidget->setCurrentWidget(ui->registeredPage);
 }
 
 
@@ -606,7 +651,6 @@ void Dialog::on_deleteButtonSalesmanProfileAdmin_clicked()
 
 
 //user admin page
-
 void Dialog::on_backButtonUserProfileAdmin_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->adminPage);
@@ -621,5 +665,207 @@ void Dialog::on_deleteButtonUserProfileAdmin_clicked()
     listAdmin(Adatbazis::getObjektum().fiokokListazasa(ui->salesmanCheckBoxAdmin->isChecked(), ui->userCheckBoxAdmin->isChecked()));
 
     ui->stackedWidget->setCurrentWidget(ui->adminPage);
+}
+
+
+//profile page
+void Dialog::on_backButtonProfile_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+}
+
+
+//salesman page
+void Dialog::showWarehouse(Auto car)
+{
+    ui->stackedWidget->setCurrentWidget(ui->warehousePage);
+
+    //clear equipments
+    ui->gpsCheckBoxWarehouse->setChecked(false);
+    ui->acCheckBoxWarehouse->setChecked(false);
+    ui->rocketCheckBoxWarehouse->setChecked(false);
+    ui->absCheckBoxWarehouse->setChecked(false);
+    ui->espCheckBoxWarehouse->setChecked(false);
+    ui->radarCheckBoxWarehouse->setChecked(false);
+
+    //set values
+    ui->licenceValueWarehouse->setText(QString::fromStdString(car.getRendszam()));
+    ui->nameLabelWarehouse->setText(QString::fromStdString(car.getMarka() + " " + car.getTipus()));
+    ui->yearValueLabelWarehouse->setText(QString::fromStdString(to_string(car.getEvjarat())));
+    ui->fuelValueLabelWarehouse->setText(QString::fromStdString(car.getUzemanyag()));
+    ui->powerValueLabelWarehouse->setText(QString::fromStdString(to_string(car.getMotor_teljesitmeny()) + " LE"));
+    ui->sizeValueLabelWarehouse->setText(QString::fromStdString(to_string(car.getHengerutartalom())));
+    ui->driveValueLabelWarehouse->setText(QString::fromStdString(car.getHajtas()));
+    ui->gearValueLabelWarehouse->setText(QString::fromStdString(car.getSebessegvalto()));
+    ui->designValueLabelWarehouse->setText(QString::fromStdString(car.getKialakitas()));
+    ui->trunkValueLabelWarehouse->setText(QString::fromStdString(to_string(car.getCsomagtarto_meret())));
+    ui->priceValueLabelWarehouse->setText(QString::fromStdString(to_string(car.getAr())));
+    ui->rentValueLabelWarehouse->setText(QString::fromStdString(to_string(car.getNapidij())));
+
+    for(string i : car.getFelszerelesek())
+    {
+        if(i == "GPS")
+            ui->gpsCheckBoxWarehouse->setChecked(true);
+        if(i == "Klíma")
+            ui->acCheckBoxWarehouse->setChecked(true);
+        if(i == "Rakéta")
+            ui->rocketCheckBoxWarehouse->setChecked(true);
+        if(i == "ABS")
+            ui->absCheckBoxWarehouse->setChecked(true);
+        if(i == "ESP")
+            ui->espCheckBoxWarehouse->setChecked(true);
+        if(i == "Tolatóradar")
+            ui->radarCheckBoxWarehouse->setChecked(true);
+    }
+}
+
+void Dialog::listWarehouse(list<Auto> list)
+{
+    //delete records
+    for(auto i : itemListWarehouse)
+    {
+        i.second.second->deleteLater();
+
+        i.second.first->deleteLater();
+        i.first->deleteLater();
+    }
+    itemListWarehouse.clear();
+
+    //add records
+    for(auto i : list)
+    {
+        if(i.getRaktaron())
+        {
+            QHBoxLayout *record = new QHBoxLayout();
+            itemContainerWarehouse->addLayout(record);
+            itemListWarehouse.insert(pair<QHBoxLayout*, pair<QPushButton*, QLabel*>>(record, pair<QPushButton*, QLabel*>()));
+
+            QPushButton *button = new QPushButton();
+            button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
+            connect(button, &QPushButton::clicked, [=]{showWarehouse(i);});
+            record->addWidget(button);
+
+            QLabel *licence = new QLabel();
+            licence->setText(QString::fromStdString(i.getRendszam()));
+            record->addWidget(licence);
+            itemListWarehouse[record] = pair<QPushButton*, QLabel*>(button, licence);
+        }
+    }
+}
+
+void Dialog::showRented(Auto car)
+{
+
+    ui->stackedWidget->setCurrentWidget(ui->rentedPage);
+
+    //clear equipments
+    ui->gpsCheckBoxRented->setChecked(false);
+    ui->acCheckBoxRented->setChecked(false);
+    ui->rocketCheckBoxRented->setChecked(false);
+    ui->absCheckBoxRented->setChecked(false);
+    ui->espCheckBoxRented->setChecked(false);
+    ui->radarCheckBoxRented->setChecked(false);
+
+    //set values
+    ui->licenceValueRented->setText(QString::fromStdString(car.getRendszam()));
+    ui->nameLabelRented->setText(QString::fromStdString(car.getMarka() + " " + car.getTipus()));
+    ui->yearValueLabelRented->setText(QString::fromStdString(to_string(car.getEvjarat())));
+    ui->fuelValueLabelRented->setText(QString::fromStdString(car.getUzemanyag()));
+    ui->powerValueLabelRented->setText(QString::fromStdString(to_string(car.getMotor_teljesitmeny()) + " LE"));
+    ui->sizeValueLabelRented->setText(QString::fromStdString(to_string(car.getHengerutartalom())));
+    ui->driveValueLabelRented->setText(QString::fromStdString(car.getHajtas()));
+    ui->gearValueLabelRented->setText(QString::fromStdString(car.getSebessegvalto()));
+    ui->designValueLabelRented->setText(QString::fromStdString(car.getKialakitas()));
+    ui->trunkValueLabelRented->setText(QString::fromStdString(to_string(car.getCsomagtarto_meret())));
+    ui->priceValueLabelRented->setText(QString::fromStdString(to_string(car.getAr())));
+    ui->rentValueLabelRented->setText(QString::fromStdString(to_string(car.getNapidij())));
+
+    for(string i : car.getFelszerelesek())
+    {
+        if(i == "GPS")
+            ui->gpsCheckBoxRented->setChecked(true);
+        if(i == "Klíma")
+            ui->acCheckBoxRented->setChecked(true);
+        if(i == "Rakéta")
+            ui->rocketCheckBoxRented->setChecked(true);
+        if(i == "ABS")
+            ui->absCheckBoxRented->setChecked(true);
+        if(i == "ESP")
+            ui->espCheckBoxRented->setChecked(true);
+        if(i == "Tolatóradar")
+            ui->radarCheckBoxRented->setChecked(true);
+    }
+}
+
+void Dialog::listRented(list<Auto> list)
+{
+    //delete records
+    for(auto i : itemListRented)
+    {
+
+        i.second.second->deleteLater();
+
+        i.second.first->deleteLater();
+        i.first->deleteLater();
+    }
+    itemListRented.clear();
+
+    //add records
+    for(auto i : list)
+    {
+        if(!i.getRaktaron())
+        {
+            QHBoxLayout *record = new QHBoxLayout();
+            itemContainerRented->addLayout(record);
+            itemListRented.insert(pair<QHBoxLayout*, pair<QPushButton*, QLabel*>>(record, pair<QPushButton*, QLabel*>()));
+
+            QPushButton *button = new QPushButton();
+            button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
+            connect(button, &QPushButton::clicked, [=]{showRented(i);});
+            record->addWidget(button);
+
+            QLabel *licence = new QLabel();
+            licence->setText(QString::fromStdString(i.getRendszam()));
+            record->addWidget(licence);
+            itemListRented[record] = pair<QPushButton*, QLabel*>(button, licence);
+        }
+    }
+}
+
+
+//warehouse page
+void Dialog::on_backButtonWarehouse_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->salemanPage);
+}
+
+void Dialog::on_deleteButtonWarehouse_clicked()
+{
+    Adatbazis::getObjektum().autoTorles(ui->licenceValueWarehouse->text().toStdString());
+
+    listWarehouse(Tarolo::getObjektum().getAutok());
+
+    ui->stackedWidget->setCurrentWidget(ui->salemanPage);
+}
+
+
+//rented page
+
+void Dialog::on_backButtonRented_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->salemanPage);
+}
+
+
+void Dialog::on_placeBackButtonRented_clicked()
+{
+    unsigned days = QInputDialog::getInt(this, "Eltelt napok:", "Hány napig állt bérlés alatt az autó?", 1, 0, 99999, 1);
+    Adatbazis::getObjektum().autoBerlesbolVisszahozva(ui->licenceValueRented->text().toStdString(), days);
+    Tarolo::getObjektum().raktarbaBevitel(ui->licenceValueRented->text().toStdString());
+
+    listWarehouse(Tarolo::getObjektum().getAutok());
+    listRented(Tarolo::getObjektum().getAutok());
+
+    ui->stackedWidget->setCurrentWidget(ui->salemanPage);
 }
 

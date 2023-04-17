@@ -47,6 +47,7 @@ public:
     bool getRaktaron() const;
     string getKialakitas() const;
     int getCsomagtarto_meret() const;
+    void setRaktaron(bool newRaktaron);
 };
 
 #endif // AUTO_H
