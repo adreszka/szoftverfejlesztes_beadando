@@ -393,7 +393,7 @@ pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> Adatbazis::fiokokListazasa(co
                           "FROM Bejelentkezesi_adatok b JOIN Felhasznalo f ON b.Felhasznalo_Id = f.Felhasznalo_Id ");
         felhasznalokLekerese.Execute();
         while (felhasznalokLekerese.FetchNext()){
-            if((string)felhasznalokLekerese[8].asString() == "kereskedo"){
+            if((string)felhasznalokLekerese[5].asString() == "kereskedo"){
             string felhasznalo_nev = (string)felhasznalokLekerese[1].asString();
             string teljes_nev = (string)felhasznalokLekerese[2].asString();
             string telefonszam = (string)felhasznalokLekerese[3].asString();

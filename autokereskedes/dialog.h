@@ -69,7 +69,7 @@ private slots:
 
     void on_salesmanCheckBoxAdmin_stateChanged(int arg1);
 
-    void on_buyerCheckBoxAdmin_stateChanged(int arg1);
+    void on_userCheckBoxAdmin_stateChanged(int arg1);
 
     void on_salesmanRegistrationButtonAdmin_clicked();
 
@@ -78,6 +78,14 @@ private slots:
     void showSalesmanAdmin(Kereskedo salesman);
 
     void showUserAdmin(RegisztraltFelhasznalo user);
+
+    void on_backButtonSalemanProfileAdmin_clicked();
+
+    void on_backButtonUserProfileAdmin_clicked();
+
+    void on_deleteButtonSalesmanProfileAdmin_clicked();
+
+    void on_deleteButtonUserProfileAdmin_clicked();
 
 private:
     Ui::Dialog *ui;

@@ -81,6 +81,11 @@ Dialog::Dialog(QWidget *parent)
 
     ui->radarCheckBoxCarRegistered->setAttribute(Qt::WA_TransparentForMouseEvents);
     ui->radarCheckBoxCarRegistered->setFocusPolicy(Qt::NoFocus);
+
+    //admin list
+    ui->profileListAdmin->setWidget(itemsAdmin);
+
+    listAdmin(Adatbazis::getObjektum().fiokokListazasa(true, true));
 }
 
 Dialog::~Dialog()
@@ -435,7 +440,6 @@ void Dialog::on_loginButtonRegistration_clicked()
 
 
 //unregispered car page
-
 void Dialog::on_backButtonCarUnregistered_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->unregisteredPage);
@@ -443,7 +447,6 @@ void Dialog::on_backButtonCarUnregistered_clicked()
 
 
 //registered car page
-
 void Dialog::on_backButtonCarRegistered_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->registeredPage);
@@ -461,12 +464,32 @@ void Dialog::on_buyButtonCarRegistered_clicked()
 //admin page
 void Dialog::showSalesmanAdmin(Kereskedo salesman)
 {
-    ui->stackedWidget->setCurrentWidget(ui->carRegisteredPage);
+    ui->stackedWidget->setCurrentWidget(ui->salesmanProfilePageAdmin);
+
+    //get values
+    ui->usernameValueLabelSalesmanProfileAdmin->setText(QString::fromStdString(salesman.getFelhasznalo_nev()));
+    ui->nameValueLabelSalesmanProfileAdmin->setText(QString::fromStdString(salesman.getTeljes_nev()));
+    ui->emailValueLabelSalesmanProfileAdmin->setText(QString::fromStdString(salesman.getEmail()));
+    ui->phoneValueLabelSalesmanProfileAdmin->setText(QString::fromStdString(salesman.getTelefonszam()));
 }
 
 void Dialog::showUserAdmin(RegisztraltFelhasznalo user)
 {
-    ui->stackedWidget->setCurrentWidget(ui->carRegisteredPage);
+    ui->stackedWidget->setCurrentWidget(ui->userProfilePageAdmin);
+
+    //get values
+    ui->usernameValueLabelUserProfileAdmin->setText(QString::fromStdString(user.getFelhasznalo_nev()));
+    ui->nameValueLabelUserProfileAdmin->setText(QString::fromStdString(user.getTeljes_nev()));
+    ui->emailValueLabelUserProfileAdmin->setText(QString::fromStdString(user.getEmail()));
+    ui->phoneValueLabelUserProfileAdmin->setText(QString::fromStdString(user.getTelefonszam()));
+    ui->birthValueLabelUserProfileAdmin->setText(QString::fromStdString(to_string(user.getSzul_dat())));
+    if(user.getNem())
+    {
+        ui->genderValueLabelUserProfileAdmin->setText("férfi");
+    }else{
+        ui->genderValueLabelUserProfileAdmin->setText("nő");
+    }
+    ui->postcodeValueLabelUserProfileAdmin->setText(QString::fromStdString(to_string(user.getIranyitoszam())));
 }
 
 void Dialog::listAdmin(pair<list<Kereskedo>, list<RegisztraltFelhasznalo>> lists)
@@ -479,7 +502,7 @@ void Dialog::listAdmin(pair<list<Kereskedo>, list<RegisztraltFelhasznalo>> lists
         i.second.first->deleteLater();
         i.first->deleteLater();
     }
-    itemListRegistered.clear();
+    itemListAdmin.clear();
 
     //add records
     for(auto salesman : lists.first)
@@ -532,13 +555,13 @@ void Dialog::on_listButtonSalesmanAdmin_clicked()
 
 void Dialog::on_salesmanCheckBoxAdmin_stateChanged(int arg1)
 {
-
+    listAdmin(Adatbazis::getObjektum().fiokokListazasa(ui->salesmanCheckBoxAdmin->isChecked(), ui->userCheckBoxAdmin->isChecked()));
 }
 
 
-void Dialog::on_buyerCheckBoxAdmin_stateChanged(int arg1)
+void Dialog::on_userCheckBoxAdmin_stateChanged(int arg1)
 {
-
+    listAdmin(Adatbazis::getObjektum().fiokokListazasa(ui->salesmanCheckBoxAdmin->isChecked(), ui->userCheckBoxAdmin->isChecked()));
 }
 
 
@@ -559,4 +582,44 @@ void Dialog::on_salesmanRegistrationButtonAdmin_clicked()
     ui->nameFieldAdmin->setText("");
     ui->phoneFieldAdmin->setText("");
     ui->emailFieldAdmin->setText("");
+
+    listAdmin(Adatbazis::getObjektum().fiokokListazasa(ui->salesmanCheckBoxAdmin->isChecked(), ui->userCheckBoxAdmin->isChecked()));
 }
+
+
+//salesman admin page
+void Dialog::on_backButtonSalemanProfileAdmin_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->adminPage);
+}
+
+void Dialog::on_deleteButtonSalesmanProfileAdmin_clicked()
+{
+    Adatbazis::getObjektum().fiokTorles(ui->usernameValueLabelSalesmanProfileAdmin->text().toStdString());
+
+    QMessageBox::information(this, "Fiók törlése:", "Sikeresen törölte a kereskedő fiókját.");
+
+    listAdmin(Adatbazis::getObjektum().fiokokListazasa(ui->salesmanCheckBoxAdmin->isChecked(), ui->userCheckBoxAdmin->isChecked()));
+
+    ui->stackedWidget->setCurrentWidget(ui->adminPage);
+}
+
+
+//user admin page
+
+void Dialog::on_backButtonUserProfileAdmin_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->adminPage);
+}
+
+void Dialog::on_deleteButtonUserProfileAdmin_clicked()
+{
+    Adatbazis::getObjektum().fiokTorles(ui->usernameValueLabelUserProfileAdmin->text().toStdString());
+
+    QMessageBox::information(this, "Fiók törlése:", "Sikeresen törölte a felhasználó fiókját.");
+
+    listAdmin(Adatbazis::getObjektum().fiokokListazasa(ui->salesmanCheckBoxAdmin->isChecked(), ui->userCheckBoxAdmin->isChecked()));
+
+    ui->stackedWidget->setCurrentWidget(ui->adminPage);
+}
+
