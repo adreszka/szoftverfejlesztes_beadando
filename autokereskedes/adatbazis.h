@@ -1,4 +1,4 @@
-#ifndef ADATBAZIS_H
+﻿#ifndef ADATBAZIS_H
 #define ADATBAZIS_H
 
 #ifdef _W64 || _WIN32
@@ -35,7 +35,7 @@ public:
     void autoVasarlas(const string& rendszam);
     void markaBeolvasas();
     bool regisztracioElmentese(const string &felhasznaloNev, const string &email, const string &jelszo, const string &teljesNev, const int &szulEv, const string &telefonSzam, const int&iranyitoSzam, const bool &nem);
-    void autoBerles(const string &rendszam, const int &felhasznalo_id);
+    void autoBerles(const string &rendszam, const string &felhasznalo_nev);
     void autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,
                               int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
                               int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,

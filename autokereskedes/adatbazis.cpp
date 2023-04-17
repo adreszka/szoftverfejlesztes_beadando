@@ -183,10 +183,17 @@ bool Adatbazis::regisztracioElmentese(const string &felhasznaloNev, const string
     return adatbazisbanTalalhato;
 }
 
-void Adatbazis::autoBerles(const string &rendszam, const int &felhasznalo_id)
+void Adatbazis::autoBerles(const string &rendszam, const string &felhasznalo_nev)
 {
+    int felhasznalo_id;
     SACommand updateraktaron(&dbcon, "UPDATE Auto SET Raktaron = 0 WHERE Rendszam = :1");
     SACommand addKolcsonzes(&dbcon, "INSERT INTO Kolcsonzes(Rendszam, Felhasznalo_Id) VALUES (:1, :2)");
+    SACommand selectFelhasznalo_id(&dbcon, "SELECT Felhasznalo_Id FROM Bejelentkezesi_adatok WHERE Felhasznalo_nev LIKE :1");
+    selectFelhasznalo_id << felhasznalo_nev.c_str();
+    selectFelhasznalo_id.Execute();
+    while (selectFelhasznalo_id.FetchNext()){
+        felhasznalo_id = selectFelhasznalo_id[1].asLong();
+    }
     updateraktaron << rendszam.c_str();
     updateraktaron.Execute();
     addKolcsonzes << rendszam.c_str();
