@@ -44,5 +44,9 @@ public:
     void kereskedoHozzaadasa(const string& felhasznalo_nev, const string& jelszo,const string& teljes_nev, const string& telefonszam, const string& email);
     void autoBerlesbolVisszahozva(const string& rendszam, int elteltnapok);
     pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> fiokokListazasa(const bool kereskedo, const bool felhasznalo);
+    void ujKervenyTarolasa(const string& rendszam, const string& marka, const string& tipus, const string& kialakitas, int ar, int napi_dij,
+                              const string& szin, int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
+                              int hengerutartalom, bool sebessegvalto, const string& hajtas, list<string> felszerelesek, bool biralas);
+    list<Auto> kervenyekListazasa();
 };
 #endif // ADATBAZIS_H

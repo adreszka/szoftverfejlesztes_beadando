@@ -196,90 +196,98 @@ void Adatbazis::autoBerles(const string &rendszam, const string &felhasznalo_nev
 void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,
                           int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
                           int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
-                          const string& marka, const string& kialakitas, list<string> felszerelesek)
+                          const string& marka, const string& kialakitas, list<string> felszerelesek, bool biralas)
 {
-    list<int> felsz_id;
-    int marka_id, tipus_id, kialakitas_id, szamlalo = 0;
-    SACommand selectMarkak(&dbcon, "SELECT * FROM Marka WHERE Marka_nev = :1");
-    SACommand selectTipusok(&dbcon, "SELECT * FROM Tipus WHERE Tipus_nev = :1");
-    SACommand selectKialakitas(&dbcon, "SELECT * FROM Kialakitas WHERE Kialakitas_nev = :1");
-    SACommand selectFelszerelesek(&dbcon, "SELECT * FROM Felszereltseg");
-    SACommand insertFelszereles(&dbcon, "INSERT INTO Felszereltseg_seged VALUES (:1,:2)");
-    SACommand insertAuto(&dbcon, "INSERT INTO Auto VALUES (:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:11,:12,:13,:14)");
-    selectKialakitas << kialakitas.c_str();
-    selectKialakitas.Execute();
-    while (selectKialakitas.FetchNext())
-    {
-        kialakitas_id = selectKialakitas[1].asLong();
-    }
-    selectMarkak << marka.c_str();
-    selectMarkak.Execute();
-    while (selectMarkak.FetchNext())
-    {
-        szamlalo++;
-    }
-    if (szamlalo == 0)
-    {
-        SACommand insertMarka(&dbcon, "INSERT INTO Marka(Marka_nev) VALUES (:1)");
-        insertMarka << marka.c_str();
-        insertMarka.Execute();
-    }
-    szamlalo = 0;
-    selectMarkak.Execute();
-    while (selectMarkak.FetchNext())
-    {
-        marka_id = selectMarkak[1].asLong();
-    }
-    selectTipusok << tipus.c_str();
-    selectTipusok.Execute();
-    while (selectTipusok.FetchNext())
-    {
-        szamlalo++;
-    }
-    if (szamlalo == 0)
-    {
-        SACommand insertTipus(&dbcon, "INSERT INTO Tipus(Tipus_nev, Marka_Id) VALUES(:1,:2)");
-        insertTipus << tipus.c_str();
-        insertTipus << (long)marka_id;
-        insertTipus.Execute();
-    }
-    selectTipusok.Execute();
-    while (selectTipusok.FetchNext())
-    {
-        tipus_id = selectTipusok[1].asLong();
-    }
-    insertAuto << rendszam.c_str();
-    insertAuto << (long)ar;
-    insertAuto << (long)napi_dij;
-    insertAuto << szin.c_str();
-    insertAuto << (long)csomagtarto_meret;
-    insertAuto << uzemanyag.c_str();
-    insertAuto << (long)evjarat;
-    insertAuto << (long)motor_teljesitmeny;
-    insertAuto << (long)hengerutartalom;
-    insertAuto << (bool)sebessegvalto;
-    insertAuto << hajtas.c_str();
-    insertAuto << (long)tipus_id;
-    insertAuto << (long)kialakitas_id;
-    insertAuto << (long)1;
-    insertAuto.Execute();
-    selectFelszerelesek.Execute();
-    while (selectFelszerelesek.FetchNext()) {
-        string felszereles = (string)selectFelszerelesek[2].asString();
-        for (auto& felsz : felszerelesek) {
-            if (felszereles == felsz) {
-                int id = selectFelszerelesek[1].asLong();
-                felsz_id.push_back(id);
+    if(biralas){
+        list<int> felsz_id;
+        int marka_id, tipus_id, kialakitas_id, szamlalo = 0;
+        SACommand selectMarkak(&dbcon, "SELECT * FROM Marka WHERE Marka_nev = :1");
+        SACommand selectTipusok(&dbcon, "SELECT * FROM Tipus WHERE Tipus_nev = :1");
+        SACommand selectKialakitas(&dbcon, "SELECT * FROM Kialakitas WHERE Kialakitas_nev = :1");
+        SACommand selectFelszerelesek(&dbcon, "SELECT * FROM Felszereltseg");
+        SACommand insertFelszereles(&dbcon, "INSERT INTO Felszereltseg_seged VALUES (:1,:2)");
+        SACommand insertAuto(&dbcon, "INSERT INTO Auto VALUES (:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:11,:12,:13,:14)");
+        selectKialakitas << kialakitas.c_str();
+        selectKialakitas.Execute();
+        while (selectKialakitas.FetchNext())
+        {
+            kialakitas_id = selectKialakitas[1].asLong();
+        }
+        selectMarkak << marka.c_str();
+        selectMarkak.Execute();
+        while (selectMarkak.FetchNext())
+        {
+            szamlalo++;
+        }
+        if (szamlalo == 0)
+        {
+            SACommand insertMarka(&dbcon, "INSERT INTO Marka(Marka_nev) VALUES (:1)");
+            insertMarka << marka.c_str();
+            insertMarka.Execute();
+        }
+        szamlalo = 0;
+        selectMarkak.Execute();
+        while (selectMarkak.FetchNext())
+        {
+            marka_id = selectMarkak[1].asLong();
+        }
+        selectTipusok << tipus.c_str();
+        selectTipusok.Execute();
+        while (selectTipusok.FetchNext())
+        {
+            szamlalo++;
+        }
+        if (szamlalo == 0)
+        {
+            SACommand insertTipus(&dbcon, "INSERT INTO Tipus(Tipus_nev, Marka_Id) VALUES(:1,:2)");
+            insertTipus << tipus.c_str();
+            insertTipus << (long)marka_id;
+            insertTipus.Execute();
+        }
+        selectTipusok.Execute();
+        while (selectTipusok.FetchNext())
+        {
+            tipus_id = selectTipusok[1].asLong();
+        }
+        insertAuto << rendszam.c_str();
+        insertAuto << (long)ar;
+        insertAuto << (long)napi_dij;
+        insertAuto << szin.c_str();
+        insertAuto << (long)csomagtarto_meret;
+        insertAuto << uzemanyag.c_str();
+        insertAuto << (long)evjarat;
+        insertAuto << (long)motor_teljesitmeny;
+        insertAuto << (long)hengerutartalom;
+        insertAuto << (bool)sebessegvalto;
+        insertAuto << hajtas.c_str();
+        insertAuto << (long)tipus_id;
+        insertAuto << (long)kialakitas_id;
+        insertAuto << (long)1;
+        insertAuto.Execute();
+        selectFelszerelesek.Execute();
+        while (selectFelszerelesek.FetchNext()) {
+            string felszereles = (string)selectFelszerelesek[2].asString();
+            for (auto& felsz : felszerelesek) {
+                if (felszereles == felsz) {
+                    int id = selectFelszerelesek[1].asLong();
+                    felsz_id.push_back(id);
+                }
+            }
+        }
+        if (!felsz_id.empty()) {
+            for (auto& id : felsz_id) {
+                insertFelszereles << rendszam.c_str();
+                insertFelszereles << (long)id;
+                insertFelszereles.Execute();
             }
         }
     }
-    if (!felsz_id.empty()) {
-        for (auto& id : felsz_id) {
-            insertFelszereles << rendszam.c_str();
-            insertFelszereles << (long)id;
-            insertFelszereles.Execute();
-        }
-    }
+    SACommand kervenyFelszereltsegTorles (&dbcon, "DELETE FROM Kerveny_felszereltseg_seged WHERE Rendszam = :1");
+    SACommand kervenyTorles (&dbcon, "DELETE FROM Kerveny WHERE Rendszam = :1");
+    kervenyFelszereltsegTorles << rendszam.c_str();
+    kervenyTorles << rendszam.c_str();
+    kervenyFelszereltsegTorles.Execute();
+    kervenyTorles.Execute();
 }
 
 void Adatbazis::autoTorles(const string &rendszam)
@@ -424,4 +432,81 @@ pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> Adatbazis::fiokokListazasa(co
         lista.second = felhasznaloL;
     }
     return lista;
+}
+
+void Adatbazis::ujKervenyTarolasa(const string &rendszam, const string &marka, const string &tipus, const string &kialakitas, int ar, int napi_dij, const string &szin, int csomagtarto_meret, const string &uzemanyag, int evjarat, int motor_teljesitmeny, int hengerutartalom, bool sebessegvalto, const string &hajtas, list<string> felszerelesek)
+{
+    SACommand kervenyTablaFeltoltese (&dbcon, "INSERT INTO Kerveny VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14)");
+    SACommand kervenyFelszereltsegFeltoltese (&dbcon, "INSERT INTO Kerveny_felszereltseg_seged VALUES (:1, :2)");
+    SACommand felszereltsegLekerese (&dbcon, "SELECT * FROM Felszereltseg WHERE felsz Like :1");
+    kervenyTablaFeltoltese << rendszam.c_str();
+    kervenyTablaFeltoltese << marka.c_str();
+    kervenyTablaFeltoltese << tipus.c_str();
+    kervenyTablaFeltoltese << kialakitas.c_str();
+    kervenyTablaFeltoltese << (long)ar;
+    kervenyTablaFeltoltese << (long)napi_dij;
+    kervenyTablaFeltoltese << szin.c_str();
+    kervenyTablaFeltoltese << (long)csomagtarto_meret;
+    kervenyTablaFeltoltese << uzemanyag.c_str();
+    kervenyTablaFeltoltese << (long)evjarat;
+    kervenyTablaFeltoltese << (long)motor_teljesitmeny;
+    kervenyTablaFeltoltese << (long)hengerutartalom;
+    kervenyTablaFeltoltese << (bool)sebessegvalto;
+    kervenyTablaFeltoltese << hajtas.c_str();
+    kervenyTablaFeltoltese.Execute();
+    for (auto it : felszerelesek){
+        int felsz_id;
+        felszereltsegLekerese << it.c_str();
+        felszereltsegLekerese.Execute();
+        while (felszereltsegLekerese.FetchNext()){
+            felsz_id = felszereltsegLekerese[1].asLong();
+        }
+        kervenyFelszereltsegFeltoltese << rendszam.c_str();
+        kervenyFelszereltsegFeltoltese << (long)felsz_id;
+        kervenyFelszereltsegFeltoltese.Execute();
+    }
+}
+
+list<Auto> Adatbazis::kervenyekListazasa()
+{
+    list<Auto> autok;
+    SACommand selectauto(&dbcon,"SELECT * FROM Kerveny");
+    SACommand selectfelszereltseg(&dbcon, "SELECT felsz"
+                      " FROM Kerveny_felszereltseg_seged fs JOIN Felszereltseg f ON fs.Felsz_Id = f.Felsz_Id"
+                      " WHERE fs.Rendszam = :1");
+    selectauto.Execute();
+    while (selectauto.FetchNext()){
+        string rendszam = (string)selectauto[1].asString();
+        string marka = (string)selectauto[2].asString();
+        string tipus = (string)selectauto[3].asString();
+        string kialakitas = (string)selectauto[4].asString();
+        int ar = selectauto[5].asLong();
+        int napidij = selectauto[6].asLong();
+        string szin = (string)selectauto[7].asString();
+        int csomagtarto_meret = selectauto[8].asLong();
+        string uzemanyag = (string)selectauto[9].asString();
+        int evjarat = selectauto[10].asLong();
+        int motor_teljesitmeny = selectauto[11].asLong();
+        int hengerurtartalom = selectauto[12].asLong();
+        string sebessegvalto;
+        if (selectauto[13].asLong()==0){
+            sebessegvalto = "Manuális";
+        }else{
+            sebessegvalto = "Automata";
+        }
+        string hajtas = (string)selectauto[14].asString();
+        selectfelszereltseg << rendszam.c_str();
+        selectfelszereltseg.Execute();
+        list<string> felszerelesek;
+        while(selectfelszereltseg.FetchNext()){
+            string felszereles = (string)selectfelszereltseg[1].asString();
+            felszerelesek.push_back(felszereles);
+        }
+        int raktaron = 0;
+        Auto a(rendszam, ar, napidij, szin, csomagtarto_meret, uzemanyag, evjarat,
+               motor_teljesitmeny, hengerurtartalom, sebessegvalto, hajtas,
+               marka, tipus, raktaron, kialakitas, felszerelesek);
+        autok.push_back(a);
+    }
+    return autok;
 }
