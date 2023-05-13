@@ -534,6 +534,9 @@ void Dialog::on_rentButtonCarRegistered_clicked()
     QMessageBox::information(this, "Bérlés:", "A bérlés sikeresen megtörtént!");
 
     listRegistered(Tarolo::getObjektum().getAutok());
+    listUnregistered(Tarolo::getObjektum().getAutok());
+    listWarehouse(Tarolo::getObjektum().getAutok());
+    listRented(Tarolo::getObjektum().getAutok());
 
     ui->stackedWidget->setCurrentWidget(ui->registeredPage);
 }
