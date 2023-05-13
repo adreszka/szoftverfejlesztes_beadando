@@ -88,6 +88,25 @@ Dialog::Dialog(QWidget *parent)
     ui->radarCheckBoxCarRegistered->setAttribute(Qt::WA_TransparentForMouseEvents);
     ui->radarCheckBoxCarRegistered->setFocusPolicy(Qt::NoFocus);
 
+    //request equipments
+    ui->gpsCheckBoxSalesmanRequest->setAttribute(Qt::WA_TransparentForMouseEvents);
+    ui->gpsCheckBoxSalesmanRequest->setFocusPolicy(Qt::NoFocus);
+
+    ui->acCheckBoxSalesmanRequest->setAttribute(Qt::WA_TransparentForMouseEvents);
+    ui->acCheckBoxSalesmanRequest->setFocusPolicy(Qt::NoFocus);
+
+    ui->rocketCheckBoxSalesmanRequest->setAttribute(Qt::WA_TransparentForMouseEvents);
+    ui->rocketCheckBoxSalesmanRequest->setFocusPolicy(Qt::NoFocus);
+
+    ui->absCheckBoxSalesmanRequest->setAttribute(Qt::WA_TransparentForMouseEvents);
+    ui->absCheckBoxSalesmanRequest->setFocusPolicy(Qt::NoFocus);
+
+    ui->espCheckBoxSalesmanRequest->setAttribute(Qt::WA_TransparentForMouseEvents);
+    ui->espCheckBoxSalesmanRequest->setFocusPolicy(Qt::NoFocus);
+
+    ui->radarCheckBoxSalesmanRequest->setAttribute(Qt::WA_TransparentForMouseEvents);
+    ui->radarCheckBoxSalesmanRequest->setFocusPolicy(Qt::NoFocus);
+
     //admin list
     ui->profileListAdmin->setWidget(itemsAdmin);
 
@@ -96,9 +115,11 @@ Dialog::Dialog(QWidget *parent)
     //salesman page
     ui->warehouseListSalesman->setWidget(itemsWarehouse);
     ui->rentedListSalesman->setWidget(itemsRented);
+    ui->requestListSalesman->setWidget(itemsRequest);
 
     listWarehouse(Tarolo::getObjektum().getAutok());
     listRented(Tarolo::getObjektum().getAutok());
+    listRequest(Adatbazis::getObjektum().kervenyekListazasa());
 }
 
 Dialog::~Dialog()
@@ -452,6 +473,9 @@ void Dialog::on_loginButtonLogin_clicked()
         default:
             break;
         }
+
+        ui->usernameFieldLogin->setText("");
+        ui->passwordFieldLogin->setText("");
     }
 }
 
@@ -464,6 +488,15 @@ void Dialog::on_registrationButtonRegistration_clicked()
         QMessageBox::warning(this, "Hibás felhasználó név!", "Ez a felhasználónév már foglalt!");
     }else{
         ui->stackedWidget->setCurrentWidget(ui->registeredPage);
+
+        ui->usernameFieldRegistration->setText("");
+        ui->emailFieldRegistration->setText("");
+        ui->passwordFieldRegistration->setText("");
+        ui->nameFieldRegistration->setText("");
+        ui->birthFieldRegistration->setText("");
+        ui->phoneFieldRegistration->setText("");
+        ui->postcodeFieldRegistration->setText("");
+        ui->maleRadioRegistration->setChecked(true);
     }
 }
 
@@ -506,7 +539,12 @@ void Dialog::on_rentButtonCarRegistered_clicked()
 }
 
 
-//admin page
+//admin pag
+void Dialog::on_logoutButtonAdmin_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->unregisteredPage);
+}
+
 void Dialog::showSalesmanAdmin(Kereskedo salesman)
 {
     ui->stackedWidget->setCurrentWidget(ui->salesmanProfilePageAdmin);
@@ -674,8 +712,22 @@ void Dialog::on_backButtonProfile_clicked()
     ui->stackedWidget->setCurrentWidget(ui->registeredPage);
 }
 
+void Dialog::on_sellButtonProfile_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->requestPage);
+}
+
+void Dialog::on_logoutButtonProfile_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->unregisteredPage);
+}
 
 //salesman page
+void Dialog::on_logoutButtonSalesman_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->unregisteredPage);
+}
+
 void Dialog::showWarehouse(Auto car)
 {
     ui->stackedWidget->setCurrentWidget(ui->warehousePage);
@@ -832,6 +884,83 @@ void Dialog::listRented(list<Auto> list)
     }
 }
 
+void Dialog::showRequest(Auto car)
+{
+    ui->stackedWidget->setCurrentWidget(ui->salesmanRequestPage);
+
+    //clear equipments
+    ui->gpsCheckBoxSalesmanRequest->setChecked(false);
+    ui->acCheckBoxSalesmanRequest->setChecked(false);
+    ui->rocketCheckBoxSalesmanRequest->setChecked(false);
+    ui->absCheckBoxSalesmanRequest->setChecked(false);
+    ui->espCheckBoxSalesmanRequest->setChecked(false);
+    ui->radarCheckBoxSalesmanRequest->setChecked(false);
+
+    //set values
+    ui->licenceValueSalesmanRequest->setText(QString::fromStdString(car.getRendszam()));
+    ui->nameLabelSalesmanRequest->setText(QString::fromStdString(car.getMarka() + " " + car.getTipus()));
+    ui->yearValueLabelSalesmanRequest->setText(QString::fromStdString(to_string(car.getEvjarat())));
+    ui->fuelValueLabelSalesmanRequest->setText(QString::fromStdString(car.getUzemanyag()));
+    ui->powerValueLabelSalesmanRequest->setText(QString::fromStdString(to_string(car.getMotor_teljesitmeny()) + " LE"));
+    ui->sizeValueLabelSalesmanRequest->setText(QString::fromStdString(to_string(car.getHengerutartalom())));
+    ui->driveValueLabelSalesmanRequest->setText(QString::fromStdString(car.getHajtas()));
+    ui->gearValueLabelSalesmanRequest->setText(QString::fromStdString(car.getSebessegvalto()));
+    ui->designValueLabelSalesmanRequest->setText(QString::fromStdString(car.getKialakitas()));
+    ui->trunkValueLabelSalesmanRequest->setText(QString::fromStdString(to_string(car.getCsomagtarto_meret())));
+    ui->priceValueLabelSalesmanRequest->setText(QString::fromStdString(to_string(car.getAr())));
+
+    for(string i : car.getFelszerelesek())
+    {
+        if(i == "GPS")
+            ui->gpsCheckBoxSalesmanRequest->setChecked(true);
+        if(i == "Klíma")
+            ui->acCheckBoxSalesmanRequest->setChecked(true);
+        if(i == "Rakéta")
+            ui->rocketCheckBoxSalesmanRequest->setChecked(true);
+        if(i == "ABS")
+            ui->absCheckBoxSalesmanRequest->setChecked(true);
+        if(i == "ESP")
+            ui->espCheckBoxSalesmanRequest->setChecked(true);
+        if(i == "Tolatóradar")
+            ui->radarCheckBoxSalesmanRequest->setChecked(true);
+    }
+}
+
+void Dialog::listRequest(list<Auto> list)
+{
+    //delete records
+    for(auto i : itemListRequest)
+    {
+
+        i.second.second->deleteLater();
+
+        i.second.first->deleteLater();
+        i.first->deleteLater();
+    }
+    itemListRequest.clear();
+
+    //add records
+    for(auto i : list)
+    {
+        if(!i.getRaktaron())
+        {
+            QHBoxLayout *record = new QHBoxLayout();
+            itemContainerRequest->addLayout(record);
+            itemListRequest.insert(pair<QHBoxLayout*, pair<QPushButton*, QLabel*>>(record, pair<QPushButton*, QLabel*>()));
+
+            QPushButton *button = new QPushButton();
+            button->setText(QString::fromStdString(i.getMarka() + " " + i.getTipus()));
+            connect(button, &QPushButton::clicked, [=]{showRequest(i);});
+            record->addWidget(button);
+
+            QLabel *licence = new QLabel();
+            licence->setText(QString::fromStdString(i.getRendszam()));
+            record->addWidget(licence);
+            itemListRequest[record] = pair<QPushButton*, QLabel*>(button, licence);
+        }
+    }
+}
+
 
 //warehouse page
 void Dialog::on_backButtonWarehouse_clicked()
@@ -859,8 +988,7 @@ void Dialog::on_backButtonRented_clicked()
 
 void Dialog::on_placeBackButtonRented_clicked()
 {
-    unsigned days = QInputDialog::getInt(this, "Eltelt napok:", "Hány napig állt bérlés alatt az autó?", 1, 0, 99999, 1);
-    Adatbazis::getObjektum().autoBerlesbolVisszahozva(ui->licenceValueRented->text().toStdString(), days);
+    Adatbazis::getObjektum().autoBerlesbolVisszahozva(ui->licenceValueRented->text().toStdString());
     Tarolo::getObjektum().raktarbaBevitel(ui->licenceValueRented->text().toStdString());
 
     listWarehouse(Tarolo::getObjektum().getAutok());
@@ -869,3 +997,79 @@ void Dialog::on_placeBackButtonRented_clicked()
     ui->stackedWidget->setCurrentWidget(ui->salemanPage);
 }
 
+
+//request page
+void Dialog::on_submitButtonRequest_clicked()
+{
+    //fill up the equipment list
+    list<string> equipment;
+    if(ui->gpsCheckBoxRequest->isChecked())
+        equipment.push_back("GPS");
+    if(ui->acCheckBoxRequest->isChecked())
+        equipment.push_back("Klíma");
+    if(ui->rocketCheckBoxRequest->isChecked())
+        equipment.push_back("Rakéta");
+    if(ui->absCheckBoxRequest->isChecked())
+        equipment.push_back("ABS");
+    if(ui->espCheckBoxRequest->isChecked())
+        equipment.push_back("ESP");
+    if(ui->radarCheckBoxRequest->isChecked())
+        equipment.push_back("Tolatóradar");
+
+    //create the request
+    Adatbazis::getObjektum().ujKervenyTarolasa(ui->licenceFieldRequest->text().toStdString(), ui->brandFieldRequest->text().toStdString(), ui->typeFieldRequest->text().toStdString(), ui->designComboBoxRequest->currentText().toStdString()=="Ferde hátú"?"Ferde_hátú":ui->designComboBoxRequest->currentText().toStdString(), ui->priceSpinBoxRequest->value(), "fekete", ui->trunkSpinBoxRequest->value(), ui->fuelComboBoxRequest->currentText().toStdString(), ui->yearSpinBoxRequest->value(), ui->powerSpinBoxRequest->value(), ui->sizeSpinBoxRequest->value(), ui->gearComboBoxRequest->currentText().toStdString()=="Automata"?1:0, ui->driveComboBoxRequest->currentText().toStdString()=="Hátsó kerék"?"RWD":ui->driveComboBoxRequest->currentText().toStdString()=="Első kerék"?"FWD":"AWD", equipment);
+
+    //clear the page
+    ui->brandFieldRequest->setText("");
+    ui->typeFieldRequest->setText("");
+    ui->licenceFieldRequest->setText("");
+    ui->yearSpinBoxRequest->setValue(ui->yearSpinBoxRequest->minimum());
+    ui->fuelComboBoxRequest->setCurrentIndex(0);
+    ui->powerSpinBoxRequest->setValue(ui->powerSpinBoxRequest->minimum());
+    ui->sizeSpinBoxRequest->setValue(ui->sizeSpinBoxRequest->minimum());
+    ui->driveComboBoxRequest->setCurrentIndex(0);
+    ui->gearComboBoxRequest->setCurrentIndex(0);
+    ui->designComboBoxRequest->setCurrentIndex(0);
+    ui->trunkSpinBoxRequest->setValue(ui->trunkSpinBoxRequest->minimum());
+    ui->gpsCheckBoxRequest->setChecked(false);
+    ui->acCheckBoxRequest->setChecked(false);
+    ui->rocketCheckBoxRequest->setChecked(false);
+    ui->absCheckBoxRequest->setChecked(false);
+    ui->espCheckBoxRequest->setChecked(false);
+    ui->radarCheckBoxRequest->setChecked(false);
+    ui->priceSpinBoxRequest->setValue(ui->priceSpinBoxRequest->minimum());
+
+    ui->stackedWidget->setCurrentWidget(ui->profilePage);
+}
+
+void Dialog::on_backButtonRequest_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->profilePage);
+}
+
+
+//salesman request page
+
+void Dialog::on_backButtonSalesmanRequest_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->salemanPage);
+}
+
+
+void Dialog::on_acceptButtonSalesmanRequest_clicked()
+{
+    Adatbazis::getObjektum().autoEladasraKinalasa(ui->licenceValueSalesmanRequest->text().toStdString(), QInputDialog::getInt(this,"Új eladási ár", "Az autó eladási ára:"), QInputDialog::getInt(this, "Új napi díj", "Az autó bérlési díja:"), 1);
+
+    listRequest(Adatbazis::getObjektum().kervenyekListazasa());
+
+    ui->stackedWidget->setCurrentWidget(ui->salemanPage);
+}
+
+void Dialog::on_denyButtonSalesmanRequest_clicked()
+{
+    Adatbazis::getObjektum().autoEladasraKinalasa(ui->licenceValueSalesmanRequest->text().toStdString(), 0, 0, 0);
+
+    listRequest(Adatbazis::getObjektum().kervenyekListazasa());
+
+    ui->stackedWidget->setCurrentWidget(ui->salemanPage);
+}

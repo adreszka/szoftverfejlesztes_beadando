@@ -96,9 +96,13 @@ private slots:
 
     void listRented(list<Auto> list);
 
+    void listRequest(list<Auto> list);
+
     void showWarehouse(Auto car);
 
     void showRented(Auto car);
+
+    void showRequest(Auto car);
 
     void on_backButtonWarehouse_clicked();
 
@@ -107,6 +111,24 @@ private slots:
     void on_backButtonRented_clicked();
 
     void on_placeBackButtonRented_clicked();
+
+    void on_sellButtonProfile_clicked();
+
+    void on_submitButtonRequest_clicked();
+
+    void on_backButtonRequest_clicked();
+
+    void on_backButtonSalesmanRequest_clicked();
+
+    void on_acceptButtonSalesmanRequest_clicked();
+
+    void on_denyButtonSalesmanRequest_clicked();
+
+    void on_logoutButtonProfile_clicked();
+
+    void on_logoutButtonAdmin_clicked();
+
+    void on_logoutButtonSalesman_clicked();
 
 private:
     Ui::Dialog *ui;
@@ -117,6 +139,7 @@ private:
     map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListAdmin;
     map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListWarehouse;
     map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListRented;
+    map<QHBoxLayout*, pair<QPushButton*, QLabel*>> itemListRequest;
 
     //unregistered listed cars
     QWidget *itemsUnregistered = new QWidget();
@@ -137,5 +160,9 @@ private:
     //salesman rented list
     QWidget *itemsRented = new QWidget();
     QVBoxLayout *itemContainerRented = new QVBoxLayout(itemsRented);
+
+    //salesman request list
+    QWidget *itemsRequest = new QWidget();
+    QVBoxLayout *itemContainerRequest = new QVBoxLayout(itemsRequest);
 };
 #endif // DIALOG_H
