@@ -976,6 +976,8 @@ void Dialog::on_deleteButtonWarehouse_clicked()
     Adatbazis::getObjektum().autoTorles(ui->licenceValueWarehouse->text().toStdString());
 
     listWarehouse(Tarolo::getObjektum().getAutok());
+    listRegistered(Tarolo::getObjektum().getAutok());
+    listUnregistered(Tarolo::getObjektum().getAutok());
 
     ui->stackedWidget->setCurrentWidget(ui->salemanPage);
 }
@@ -996,6 +998,8 @@ void Dialog::on_placeBackButtonRented_clicked()
 
     listWarehouse(Tarolo::getObjektum().getAutok());
     listRented(Tarolo::getObjektum().getAutok());
+    listRegistered(Tarolo::getObjektum().getAutok());
+    listUnregistered(Tarolo::getObjektum().getAutok());
 
     ui->stackedWidget->setCurrentWidget(ui->salemanPage);
 }
@@ -1042,6 +1046,8 @@ void Dialog::on_submitButtonRequest_clicked()
     ui->radarCheckBoxRequest->setChecked(false);
     ui->priceSpinBoxRequest->setValue(ui->priceSpinBoxRequest->minimum());
 
+    listRequest(Adatbazis::getObjektum().kervenyekListazasa());
+
     ui->stackedWidget->setCurrentWidget(ui->profilePage);
 }
 
@@ -1064,6 +1070,9 @@ void Dialog::on_acceptButtonSalesmanRequest_clicked()
     Adatbazis::getObjektum().autoEladasraKinalasa(ui->licenceValueSalesmanRequest->text().toStdString(), QInputDialog::getInt(this,"Új eladási ár", "Az autó eladási ára:"), QInputDialog::getInt(this, "Új napi díj", "Az autó bérlési díja:"), 1);
 
     listRequest(Adatbazis::getObjektum().kervenyekListazasa());
+    listRegistered(Tarolo::getObjektum().getAutok());
+    listUnregistered(Tarolo::getObjektum().getAutok());
+    listWarehouse(Tarolo::getObjektum().getAutok());
 
     ui->stackedWidget->setCurrentWidget(ui->salemanPage);
 }
