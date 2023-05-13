@@ -200,7 +200,7 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
         list<int> felsz_id;
         list<string> felszerelesek;
         int marka_id, tipus_id, kialakitas_id, szamlalo = 0, csomagtarto_meret, evjarat, motor_teljesitmeny, hengerutartalom;
-        string marka, kialakitas, tipus, szin, uzemanyag, hajtas;
+        string marka, kialakitas, tipus, szin, uzemanyag, hajtas, sebesseg_valto;
         bool sebessegvalto;
         SACommand selectKervenyesAuto(&dbcon, "SELECT * FROM Kerveny WHERE Rendszam = :1");
         SACommand selectKervenyesFelszerelesek(&dbcon, "SELECT * FROM Kerveny_felszereltseg_seged WHERE Rendszam = :1");
@@ -288,9 +288,11 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
         selectFelszerelesek.Execute();
         while (selectFelszerelesek.FetchNext()) {
             int felszid = selectFelszerelesek[1].asLong();
+            string felszereles = (string)selectFelszerelesek[2].asString();
             while (selectKervenyesFelszerelesek.FetchNext()) {
                 if (felszid == selectKervenyesFelszerelesek[2].asLong()) {
                     felsz_id.push_back(felszid);
+                    felszerelesek.push_back(felszereles);
                 }
             }
         }
@@ -301,6 +303,21 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
                 insertFelszereles.Execute();
             }
         }
+        if (sebessegvalto == false)
+        {
+            sebesseg_valto = "Manuális";
+        } else
+        {
+            sebesseg_valto = "Automata";
+        }
+        Auto a(rendszam, ar, napi_dij, szin, csomagtarto_meret,
+               uzemanyag, evjarat, motor_teljesitmeny, hengerutartalom,
+               sebesseg_valto, hajtas, marka, tipus, 1, kialakitas,
+               felszerelesek);
+        Tarolo::getObjektum().hozzaAd(a);
+        map<string, list<string>> markak = Tarolo::getObjektum().getMarkak();
+        markak[marka].push_back(tipus);
+        Tarolo::getObjektum().setMarkak(markak);
     }
     SACommand kervenyFelszereltsegTorles (&dbcon, "DELETE FROM Kerveny_felszereltseg_seged WHERE Rendszam = :1");
     SACommand kervenyTorles (&dbcon, "DELETE FROM Kerveny WHERE Rendszam = :1");
