@@ -194,20 +194,38 @@ void Adatbazis::autoBerles(const string &rendszam, const string &felhasznalo_nev
 
     Tarolo::getObjektum().raktarbolKivetel(rendszam);
 }
-void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,
-                          int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
-                          int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
-                          const string& marka, const string& kialakitas, list<string> felszerelesek, bool biralas)
+void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, bool biralas)
 {
     if(biralas){
         list<int> felsz_id;
-        int marka_id, tipus_id, kialakitas_id, szamlalo = 0;
+        list<string> felszerelesek;
+        int marka_id, tipus_id, kialakitas_id, szamlalo = 0, csomagtarto_meret, evjarat, motor_teljesitmeny, hengerutartalom;
+        string marka, kialakitas, tipus, szin, uzemanyag, hajtas;
+        bool sebessegvalto;
+        SACommand selectKervenyesAuto(&dbcon, "SELECT * FROM Kerveny WHERE Rendszam = :1");
+        SACommand selectKervenyesFelszerelesek(&dbcon, "SELECT * FROM Kerveny_felszereltseg_seged WHERE Rendszam = :1");
         SACommand selectMarkak(&dbcon, "SELECT * FROM Marka WHERE Marka_nev = :1");
         SACommand selectTipusok(&dbcon, "SELECT * FROM Tipus WHERE Tipus_nev = :1");
         SACommand selectKialakitas(&dbcon, "SELECT * FROM Kialakitas WHERE Kialakitas_nev = :1");
         SACommand selectFelszerelesek(&dbcon, "SELECT * FROM Felszereltseg");
         SACommand insertFelszereles(&dbcon, "INSERT INTO Felszereltseg_seged VALUES (:1,:2)");
         SACommand insertAuto(&dbcon, "INSERT INTO Auto VALUES (:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:11,:12,:13,:14)");
+        selectKervenyesAuto << rendszam.c_str();
+        selectKervenyesAuto.Execute();
+        while (selectKervenyesAuto.FetchNext())
+        {
+            marka = (string)selectKervenyesAuto[2].asString();
+            tipus = (string)selectKervenyesAuto[3].asString();
+            kialakitas = (string)selectKervenyesAuto[4].asString();
+            szin = (string)selectKervenyesAuto[6].asString();
+            csomagtarto_meret = selectKervenyesAuto[7].asLong();
+            uzemanyag = (string)selectKervenyesAuto[8].asString();
+            evjarat = selectKervenyesAuto[9].asLong();
+            motor_teljesitmeny = selectKervenyesAuto[10].asLong();
+            hengerutartalom = selectKervenyesAuto[11].asLong();
+            sebessegvalto = selectKervenyesAuto[12].asBool();
+            hajtas = (string)selectKervenyesAuto[13].asString();
+        }
         selectKialakitas << kialakitas.c_str();
         selectKialakitas.Execute();
         while (selectKialakitas.FetchNext())
@@ -265,13 +283,14 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
         insertAuto << (long)kialakitas_id;
         insertAuto << (long)1;
         insertAuto.Execute();
+        selectKervenyesFelszerelesek << rendszam.c_str();
+        selectKervenyesFelszerelesek.Execute();
         selectFelszerelesek.Execute();
         while (selectFelszerelesek.FetchNext()) {
-            string felszereles = (string)selectFelszerelesek[2].asString();
-            for (auto& felsz : felszerelesek) {
-                if (felszereles == felsz) {
-                    int id = selectFelszerelesek[1].asLong();
-                    felsz_id.push_back(id);
+            int felszid = selectFelszerelesek[1].asLong();
+            while (selectKervenyesFelszerelesek.FetchNext()) {
+                if (felszid == selectKervenyesFelszerelesek[2].asLong()) {
+                    felsz_id.push_back(felszid);
                 }
             }
         }
@@ -440,9 +459,9 @@ pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> Adatbazis::fiokokListazasa(co
     return lista;
 }
 
-void Adatbazis::ujKervenyTarolasa(const string &rendszam, const string &marka, const string &tipus, const string &kialakitas, int ar, int napi_dij, const string &szin, int csomagtarto_meret, const string &uzemanyag, int evjarat, int motor_teljesitmeny, int hengerutartalom, bool sebessegvalto, const string &hajtas, list<string> felszerelesek)
+void Adatbazis::ujKervenyTarolasa(const string &rendszam, const string &marka, const string &tipus, const string &kialakitas, int ar, const string &szin, int csomagtarto_meret, const string &uzemanyag, int evjarat, int motor_teljesitmeny, int hengerutartalom, bool sebessegvalto, const string &hajtas, list<string> felszerelesek)
 {
-    SACommand kervenyTablaFeltoltese (&dbcon, "INSERT INTO Kerveny VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14)");
+    SACommand kervenyTablaFeltoltese (&dbcon, "INSERT INTO Kerveny VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13)");
     SACommand kervenyFelszereltsegFeltoltese (&dbcon, "INSERT INTO Kerveny_felszereltseg_seged VALUES (:1, :2)");
     SACommand felszereltsegLekerese (&dbcon, "SELECT * FROM Felszereltseg WHERE felsz Like :1");
     kervenyTablaFeltoltese << rendszam.c_str();
@@ -450,7 +469,6 @@ void Adatbazis::ujKervenyTarolasa(const string &rendszam, const string &marka, c
     kervenyTablaFeltoltese << tipus.c_str();
     kervenyTablaFeltoltese << kialakitas.c_str();
     kervenyTablaFeltoltese << (long)ar;
-    kervenyTablaFeltoltese << (long)napi_dij;
     kervenyTablaFeltoltese << szin.c_str();
     kervenyTablaFeltoltese << (long)csomagtarto_meret;
     kervenyTablaFeltoltese << uzemanyag.c_str();
@@ -487,20 +505,19 @@ list<Auto> Adatbazis::kervenyekListazasa()
         string tipus = (string)selectauto[3].asString();
         string kialakitas = (string)selectauto[4].asString();
         int ar = selectauto[5].asLong();
-        int napidij = selectauto[6].asLong();
-        string szin = (string)selectauto[7].asString();
-        int csomagtarto_meret = selectauto[8].asLong();
-        string uzemanyag = (string)selectauto[9].asString();
-        int evjarat = selectauto[10].asLong();
-        int motor_teljesitmeny = selectauto[11].asLong();
-        int hengerurtartalom = selectauto[12].asLong();
+        string szin = (string)selectauto[6].asString();
+        int csomagtarto_meret = selectauto[7].asLong();
+        string uzemanyag = (string)selectauto[8].asString();
+        int evjarat = selectauto[9].asLong();
+        int motor_teljesitmeny = selectauto[10].asLong();
+        int hengerurtartalom = selectauto[11].asLong();
         string sebessegvalto;
-        if (selectauto[13].asLong()==0){
+        if (selectauto[12].asLong()==0){
             sebessegvalto = "Manuális";
         }else{
             sebessegvalto = "Automata";
         }
-        string hajtas = (string)selectauto[14].asString();
+        string hajtas = (string)selectauto[13].asString();
         selectfelszereltseg << rendszam.c_str();
         selectfelszereltseg.Execute();
         list<string> felszerelesek;
@@ -509,7 +526,7 @@ list<Auto> Adatbazis::kervenyekListazasa()
             felszerelesek.push_back(felszereles);
         }
         int raktaron = 0;
-        Auto a(rendszam, ar, napidij, szin, csomagtarto_meret, uzemanyag, evjarat,
+        Auto a(rendszam, ar, 0, szin, csomagtarto_meret, uzemanyag, evjarat,
                motor_teljesitmeny, hengerurtartalom, sebessegvalto, hajtas,
                marka, tipus, raktaron, kialakitas, felszerelesek);
         autok.push_back(a);
