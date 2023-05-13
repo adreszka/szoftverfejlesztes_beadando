@@ -284,11 +284,11 @@ void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_di
         insertAuto << (long)1;
         insertAuto.Execute();
         selectKervenyesFelszerelesek << rendszam.c_str();
-        selectKervenyesFelszerelesek.Execute();
         selectFelszerelesek.Execute();
         while (selectFelszerelesek.FetchNext()) {
             int felszid = selectFelszerelesek[1].asLong();
             string felszereles = (string)selectFelszerelesek[2].asString();
+            selectKervenyesFelszerelesek.Execute();
             while (selectKervenyesFelszerelesek.FetchNext()) {
                 if (felszid == selectKervenyesFelszerelesek[2].asLong()) {
                     felsz_id.push_back(felszid);
