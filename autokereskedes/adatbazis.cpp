@@ -177,13 +177,15 @@ void Adatbazis::autoBerles(const string &rendszam, const string &felhasznalo_nev
 {
     int felhasznalo_id;
     SACommand updateraktaron(&dbcon, "UPDATE Auto SET Raktaron = 0 WHERE Rendszam = :1");
-    SACommand addKolcsonzes(&dbcon, "INSERT INTO Kolcsonzes(Rendszam, Felhasznalo_Id) VALUES (:1, :2)");
+    SACommand addKolcsonzes(&dbcon, "INSERT INTO Kolcsonzes(Rendszam, Felhasznalo_Id, kidat) VALUES (:1, :2, DATETIME())");
     SACommand selectFelhasznalo_id(&dbcon, "SELECT Felhasznalo_Id FROM Bejelentkezesi_adatok WHERE Felhasznalo_nev LIKE :1");
+
     selectFelhasznalo_id << felhasznalo_nev.c_str();
     selectFelhasznalo_id.Execute();
     while (selectFelhasznalo_id.FetchNext()){
         felhasznalo_id = selectFelhasznalo_id[1].asLong();
     }
+
     updateraktaron << rendszam.c_str();
     updateraktaron.Execute();
     addKolcsonzes << rendszam.c_str();
@@ -192,7 +194,6 @@ void Adatbazis::autoBerles(const string &rendszam, const string &felhasznalo_nev
 
     Tarolo::getObjektum().raktarbolKivetel(rendszam);
 }
-
 void Adatbazis::autoEladasraKinalasa(const string& rendszam, int ar, int napi_dij, const string& szin,
                           int csomagtarto_meret, const string& uzemanyag, int evjarat, int motor_teljesitmeny,
                           int hengerutartalom, bool sebessegvalto, const string& hajtas, const string& tipus,
@@ -341,26 +342,31 @@ void Adatbazis::kereskedoHozzaadasa(const string &felhasznalo_nev, const string 
     insertFelhasznalo.Execute();
 }
 
-void Adatbazis::autoBerlesbolVisszahozva(const string &rendszam, int elteltnapok)
+void Adatbazis::autoBerlesbolVisszahozva(const string &rendszam)
 {
-    int napidij = 0, kolcsdij = 0;
+    int napidij = 0;
+    string kidat;
     SACommand selectAuto(&dbcon, "SELECT * FROM Auto WHERE Rendszam = :1");
     SACommand updateAuto(&dbcon, "UPDATE Auto SET Raktaron = 1 WHERE Rendszam = :1");
-    SACommand updateKolcsonzottAuto(&dbcon, "UPDATE Kolcsonzes SET elteltnapok = :2, Kolcsdij = :3 "
-                                            "WHERE Rendszam = :1 AND elteltnapok ISNULL");
+    SACommand updateKolcsonzottAutoDate(&dbcon, "UPDATE Kolcsonzes SET visszdat = DATETIME() WHERE Rendszam = :1 AND visszdat ISNULL");
+    SACommand updateKolcsonzottAutoDij(&dbcon, "UPDATE Kolcsonzes SET Kolcsdij = CAST(ROUND(JULIANDAY(visszdat)-JULIANDAY(kidat)) * :2 AS int) WHERE Rendszam = :1 AND Kolcsdij ISNULL");
     selectAuto << rendszam.c_str();
     selectAuto.Execute();
+
     while (selectAuto.FetchNext())
     {
         napidij = selectAuto[3].asLong();
     }
-    kolcsdij = elteltnapok * napidij;
-    updateKolcsonzottAuto << rendszam.c_str();
-    updateKolcsonzottAuto << (long)elteltnapok;
-    updateKolcsonzottAuto << (long)kolcsdij;
-    updateKolcsonzottAuto.Execute();
+
     updateAuto << rendszam.c_str();
     updateAuto.Execute();
+
+    updateKolcsonzottAutoDate << rendszam.c_str();
+    updateKolcsonzottAutoDate.Execute();
+
+    updateKolcsonzottAutoDij << rendszam.c_str();
+    updateKolcsonzottAutoDij << (long)napidij;
+    updateKolcsonzottAutoDij.Execute();
 }
 
 pair<list<Kereskedo>,list<RegisztraltFelhasznalo>> Adatbazis::fiokokListazasa(const bool kereskedo, const bool felhasznalo)
